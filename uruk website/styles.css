@@ -1,0 +1,193 @@
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Styles */
+.header-bar {
+    background-color: #800000; /* Maroon */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-bar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+.nav-bar ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+.nav-bar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-bar ul li a:hover,
+.nav-bar ul li a.active {
+    color: #ff7e5f;
+}
+
+/* Dropdown Menu Styles */
+.nav-bar ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #800000;
+    padding: 10px 0;
+    border-radius: 5px;
+    list-style: none;
+    z-index: 100;
+}
+
+.nav-bar ul li:hover > ul {
+    display: block;
+}
+
+.nav-bar ul li ul li a {
+    padding: 8px 12px;
+    display: block;
+    color: white;
+}
+
+.nav-bar ul li ul li a:hover {
+    background-color: #a52a2a;
+}
+
+/* Section Styles */
+.section {
+    padding: 4rem 0;
+    position: relative;
+    color: white;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section .container {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+}
+
+.bg-home {
+    background: url('images/bg.jpg') no-repeat center center/cover;
+}
+
+.bg-about {
+    background: url('images/bg2.jpg') no-repeat center center/cover;
+}
+
+.bg-services {
+    background: url('images/services.jpg') no-repeat center center/cover;
+}
+
+.bg-projects {
+    background: url('images/projects.jpg') no-repeat center center/cover;
+}
+
+.bg-clients {
+    background: url('images/clients.jpg') no-repeat center center/cover;
+}
+
+.bg-jobs {
+    background: url('images/jobs.jpg') no-repeat center center/cover;
+}
+
+.bg-contact {
+    background: url('images/contact.jpg') no-repeat center center/cover;
+}
+
+.bg-testimonials {
+    background: url('images/testimonials.jpg') no-repeat center center/cover;
+}
+
+/* Add transparency to backgrounds */
+.bg-home::before,
+.bg-about::before,
+.bg-services::before,
+.bg-projects::before,
+.bg-clients::before,
+.bg-jobs::before,
+.bg-contact::before,
+.bg-testimonials::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* 50% transparency */
+    z-index: 1;
+}
+
+/* Footer Styles */
+footer {
+    background: #800000;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+/* Button Styles */
+button {
+    border-radius: 5px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+}
+
+.map-container {
+    margin: 20px 0;
+    width: 100%;
+    height: 600px; /* Adjust height as needed */
+    border: none; /* Remove any border if unnecessary */
+    overflow: hidden;
+    z-index: 1; /* Ensure it's above other elements */
+    position: relative; /* Ensure it's not covered by pseudo-elements */
+}

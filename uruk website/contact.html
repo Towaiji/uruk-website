@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Uruk General Contracting</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header-bar">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Company Logo" />
+            </div>
+            <nav class="nav-bar">
+                <ul class="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li>
+                        <a href="services.html">Services</a>
+                        <ul>
+                            <li><a href="construction.html">Construction</a></li>
+                            <li><a href="maintenance.html">Maintenance</a></li>
+                            <li><a href="renovation.html">Renovation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="clients.html">Clients</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="contact.html" class="active">Contact Us</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section bg-contact">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you! Reach out to us for inquiries, quotes, or assistance.</p>
+        </div>
+
+
+
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.230048457684!2d54.57256!3d24.42299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDI1JzEwLjgiTiA1NMKwMzQnMjYuOSJF!5e0!3m2!1sen!2sus!4v1699889169284!"
+                width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+
+
+
+        <div class="container">
+            <div class="contact-details">
+                <h2>We Build Everything That You Need!</h2>
+                <p>Interested in our services or need advice? Reach out to us, and we'll be glad to assist you!</p>
+                <ul>
+                    <li><strong>Address:</strong> Abu Dhabi, UAE</li>
+                    <li><strong>Phone:</strong> +971 0504415261</li>
+                    <li><strong>Email:</strong> info@urukgc.com</li>
+                </ul>
+            </div>
+            <div class="contact-form-container">
+                <h2>Get A Quote!</h2>
+                <form action="submit_form.php" method="POST" class="contact-form">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
