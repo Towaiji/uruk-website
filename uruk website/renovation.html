@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renovation Services | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
     <header class="header-bar">
         <div class="container header-container">
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
+            <div class="hamburger">&#9776;</div>
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
                         <a href="about.html">About Us</a>
                     </li>
                     <li>
-                        <a href="services.html">Services</a>
+                        <a href="services.html" class="active">Services</a>
                         <ul>
                             <li><a href="construction.html">Construction</a></li>
                             <li><a href="maintenance.html">Maintenance</a></li>
-                            <li><a href="renovation.html">Renovation</a></li>
-                        </ul>
+                            <li><a href="renovation.html" class="active">Renovation</a></li> </ul>
                     </li>
                     <li>
                         <a href="projects.html">Projects</a>
@@ -44,12 +44,87 @@
         </div>
     </header>
 
-    <section class="section bg-services">
+    <section id="renovation-hero" class="hero-section bg-services">
+        <div class="overlay"></div>
         <div class="container">
-            <h2>Renovation Services</h2>
-            <p>Details about renovation services will go here.</p>
+            <h2>Transformative Renovation Services</h2>
+            <p>Breathing new life into spaces with innovative design and expert execution.</p>
         </div>
     </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <h3>Revitalize Your Space with Our Renovation Expertise</h3>
+            <p class="section-description">Whether it's a minor refresh or a major overhaul, Uruk General Contracting delivers bespoke renovation solutions that enhance functionality, aesthetics, and value.</p>
+
+            <div class="service-detail-grid">
+                <div class="service-detail-item">
+                    <img src="images/renovation-residential.jpg" alt="Residential Renovation">
+                    <h4>Residential Renovation</h4>
+                    <p>Elevate your home with modern kitchens, luxurious bathrooms, expansive living areas, and functional additions.</p>
+                    <ul>
+                        <li>Kitchen & Bathroom Remodels</li>
+                        <li>Basement Finishing</li>
+                        <li>Home Additions</li>
+                        <li>Exterior Facelift & Landscaping</li>
+                    </ul>
+                </div>
+                <div class="service-detail-item">
+                    <img src="images/renovation-commercial.jpg" alt="Commercial Renovation">
+                    <h4>Commercial & Office Renovation</h4>
+                    <p>Optimize your business environment for productivity and client appeal with our professional commercial renovation services.</p>
+                    <ul>
+                        <li>Office Space Optimization</li>
+                        <li>Retail Store Revamps</li>
+                        <li>Restaurant & Cafe Upgrades</li>
+                        <li>Tenant Improvements</li>
+                    </ul>
+                </div>
+                <div class="service-detail-item">
+                    <img src="images/renovation-structural.jpg" alt="Structural Renovation">
+                    <h4>Structural & Historical Renovation</h4>
+                    <p>Expertly restoring and strengthening existing structures, including heritage buildings, while preserving their unique character.</p>
+                    <ul>
+                        <li>Structural Repairs & Upgrades</li>
+                        <li>Historical Building Restoration</li>
+                        <li>Building Code Compliance Upgrades</li>
+                        <li>Adaptive Reuse Projects</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-highlight-section">
+                <h4>Our Renovation Process</h4>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <h5>Concept & Design</h5>
+                        <p>Collaborative planning to bring your vision to life.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h5>Material Selection</h5>
+                        <p>Guidance in choosing high-quality, durable materials.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h5>Skilled Craftsmanship</h5>
+                        <p>Execution with precision and attention to detail.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h5>Timely Completion</h5>
+                        <p>Delivering your transformed space on schedule.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section call-to-action bg-primary-dark">
+        <div class="container">
+            <h3>Ready to transform your property?</h3>
+            <p>Let's discuss your renovation ideas and turn them into reality.</p>
+            <button onclick="window.location.href='contact.html'">Plan Your Renovation</button>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>

@@ -1,21 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials | Uruk General Contracting</title>
+    <title>Client Testimonials | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
     <header class="header-bar">
         <div class="container header-container">
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
+            <div class="hamburger">☰</div>
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
                         <a href="about.html">About Us</a>
                     </li>
@@ -37,21 +41,106 @@
                     <li><a href="clients.html">Clients</a></li>
                     <li><a href="jobs.html">Jobs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                </ul>
+                    <li><a href="testimonials.html" class="active">Testimonials</a></li> </ul>
             </nav>
         </div>
     </header>
-    <section class="section bg-testimonials">
+
+    <section id="testimonials-hero" class="hero-section bg-testimonials">
+        <div class="overlay"></div>
         <div class="container">
-            <h2>Testimonials</h2>
-            <p>See what our clients have to say about working with Uruk General Contracting.</p>
+            <h2>What Our Clients Say</h2>
+            <p>Hear directly from the clients who trust us with their most important projects.</p>
         </div>
     </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <h3>Voices of Satisfaction</h3>
+            <p class="section-description">Our success is built on the satisfaction of our clients. Read their experiences and discover why Uruk General Contracting is the preferred choice.</p>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <p>"Uruk General Contracting transformed our vision into a stunning reality. Their professionalism, attention to detail, and commitment to deadlines were truly impressive. We couldn't be happier with our new corporate headquarters!"</p>
+                    </div>
+                    <div class="client-info">
+                        <img src="images/client-avatar-1.jpg" alt="Client Avatar" class="client-avatar">
+                        <div class="client-details">
+                            <span class="client-name">Ahmed Al-Farsi</span>
+                            <span class="client-title">CEO, Tech Innovations Inc.</span>
+                            <div class="star-rating">
+                                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <p>"The team at Uruk provided exceptional maintenance services for our entire residential complex. Their prompt response, technical expertise, and proactive approach ensured smooth operations and happy residents."</p>
+                    </div>
+                    <div class="client-info">
+                        <img src="images/client-avatar-2.jpg" alt="Client Avatar" class="client-avatar">
+                        <div class="client-details">
+                            <span class="client-name">Fatima Zahra</span>
+                            <span class="client-title">Property Manager, Grand Residences</span>
+                            <div class="star-rating">
+                                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <p>"Our retail space underwent a complete renovation by Uruk, and the results exceeded our expectations. They minimized disruption to our business and delivered a high-quality finish on time and within budget. Highly recommended!"</p>
+                    </div>
+                    <div class="client-info">
+                        <img src="images/client-avatar-3.jpg" alt="Client Avatar" class="client-avatar">
+                        <div class="client-details">
+                            <span class="client-name">Khalid Bin Saud</span>
+                            <span class="client-title">Owner, Elite Fashion Boutique</span>
+                            <div class="star-rating">
+                                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <p>"Choosing Uruk for our school expansion was the best decision. Their focus on safety, efficient project management, and attention to educational facility requirements made the entire process seamless and successful."</p>
+                    </div>
+                    <div class="client-info">
+                        <img src="images/client-avatar-4.jpg" alt="Client Avatar" class="client-avatar">
+                        <div class="client-details">
+                            <span class="client-name">Dr. Aisha Khan</span>
+                            <span class="client-title">Principal, Bright Future Academy</span>
+                            <div class="star-rating">
+                                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+    </section>
+
+    <section class="section call-to-action bg-primary-dark">
+        <div class="container">
+            <h3>Ready to become our next success story?</h3>
+            <p>Contact us today to discuss your project and experience our commitment to excellence.</p>
+            <button onclick="window.location.href='contact.html'">Start Your Project</button>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>
         </div>
     </footer>
 </body>
+
 </html>

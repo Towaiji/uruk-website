@@ -1,21 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clients | Uruk General Contracting</title>
+    <title>Our Valued Clients | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
     <header class="header-bar">
         <div class="container header-container">
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
+            <div class="hamburger">&#9776;</div>
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
                         <a href="about.html">About Us</a>
                     </li>
@@ -34,24 +38,107 @@
                             <li><a href="completed-projects.html">Completed Projects</a></li>
                         </ul>
                     </li>
-                    <li><a href="clients.html">Clients</a></li>
-                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="clients.html" class="active">Clients</a></li> <li><a href="jobs.html">Jobs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <section class="section bg-clients">
+
+    <section id="clients-hero" class="hero-section bg-clients">
+        <div class="overlay"></div>
         <div class="container">
-            <h2>Our Clients</h2>
-            <p>We are proud to have partnered with esteemed clients across various industries.</p>
+            <h2>Our Valued Partnerships</h2>
+            <p>Building strong relationships and delivering exceptional value for our diverse clientele.</p>
         </div>
     </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <h3>Who We Work With</h3>
+            <p class="section-description">We are honored to partner with leading organizations and individuals across various sectors, delivering tailor-made construction and maintenance solutions that exceed expectations.</p>
+
+            <div class="client-logo-grid">
+                <div class="client-logo-item">
+                    <img src="images/client-logo-1.png" alt="Client Logo 1">
+                    <p>Tech Innovations Inc.</p>
+                </div>
+                <div class="client-logo-item">
+                    <img src="images/client-logo-2.png" alt="Client Logo 2">
+                    <p>City Developments Corp.</p>
+                </div>
+                <div class="client-logo-item">
+                    <img src="images/client-logo-3.png" alt="Client Logo 3">
+                    <p>Apex Healthcare Group</p>
+                </div>
+                <div class="client-logo-item">
+                    <img src="images/client-logo-4.png" alt="Client Logo 4">
+                    <p>Global Retail Solutions</p>
+                </div>
+                <div class="client-logo-item">
+                    <img src="images/client-logo-5.png" alt="Client Logo 5">
+                    <p>Eco-Energy Systems</p>
+                </div>
+                <div class="client-logo-item">
+                    <img src="images/client-logo-6.png" alt="Client Logo 6">
+                    <p>Horizon Logistics</p>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="section bg-light-gray">
+        <div class="container">
+            <h3>Industries We Serve</h3>
+            <div class="industries-grid">
+                <div class="industry-item">
+                    <img src="images/icon-commercial.png" alt="Commercial Icon">
+                    <h4>Commercial</h4>
+                    <p>Office buildings, retail spaces, hospitality, and mixed-use developments.</p>
+                </div>
+                <div class="industry-item">
+                    <img src="images/icon-residential.png" alt="Residential Icon">
+                    <h4>Residential</h4>
+                    <p>Custom homes, apartment complexes, villas, and community developments.</p>
+                </div>
+                <div class="industry-item">
+                    <img src="images/icon-industrial.png" alt="Industrial Icon">
+                    <h4>Industrial</h4>
+                    <p>Warehouses, manufacturing plants, logistics centers, and specialized facilities.</p>
+                </div>
+                <div class="industry-item">
+                    <img src="images/icon-healthcare.png" alt="Healthcare Icon">
+                    <h4>Healthcare</h4>
+                    <p>Hospitals, clinics, medical centers, and specialized healthcare facilities.</p>
+                </div>
+                <div class="industry-item">
+                    <img src="images/icon-education.png" alt="Education Icon">
+                    <h4>Education</h4>
+                    <p>Schools, universities, and educational institution expansions and renovations.</p>
+                </div>
+                <div class="industry-item">
+                    <img src="images/icon-infrastructure.png" alt="Infrastructure Icon">
+                    <h4>Infrastructure</h4>
+                    <p>Public works, roads, utilities, and civic structures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section call-to-action bg-primary-dark">
+        <div class="container">
+            <h3>Join Our Growing List of Satisfied Clients</h3>
+            <p>We are dedicated to building lasting relationships and delivering excellence on every project.</p>
+            <button onclick="window.location.href='contact.html'">Become Our Client</button>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>
         </div>
     </footer>
 </body>
+
 </html>

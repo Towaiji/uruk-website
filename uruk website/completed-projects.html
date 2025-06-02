@@ -1,22 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Completed Projects | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
-    
     <header class="header-bar">
         <div class="container header-container">
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
+            <div class="hamburger">&#9776;</div>
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
                         <a href="about.html">About Us</a>
                     </li>
@@ -29,10 +32,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="projects.html">Projects</a>
+                        <a href="projects.html" class="active">Projects</a>
                         <ul>
                             <li><a href="current-projects.html">Current Projects</a></li>
-                            <li><a href="completed-projects.html">Completed Projects</a></li>
+                            <li><a href="completed-projects.html" class="active">Completed Projects</a></li>
                         </ul>
                     </li>
                     <li><a href="clients.html">Clients</a></li>
@@ -44,16 +47,82 @@
         </div>
     </header>
 
-    <section class="section bg-services">
+    <section id="completed-projects-hero" class="hero-section bg-projects">
+        <div class="overlay"></div>
         <div class="container">
-            <h2>Completed Projects</h2>
-            <p>Details about completed projects will go here.</p>
+            <h2>Our Completed Masterpieces</h2>
+            <p>Explore a selection of our successfully delivered projects, showcasing our expertise and dedication.</p>
         </div>
     </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <h3>A Legacy of Success</h3>
+            <p class="section-description">From complex commercial builds to intricate residential renovations, each completed project reflects our unwavering commitment to quality and client satisfaction.</p>
+
+            <div class="project-gallery-grid">
+                <div class="project-card">
+                    <img src="images/completed-project-1.jpg" alt="Modern Office Building">
+                    <div class="project-info">
+                        <h4>Apex Corporate Hub</h4>
+                        <p class="project-category">Commercial Construction</p>
+                        <p class="project-description">A 15-story modern office building, designed for LEED certification with integrated smart systems.</p>
+                        <ul class="project-meta">
+                            <li><strong>Location:</strong> Financial District</li>
+                            <li><strong>Completion:</strong> March 2024</li>
+                            <li><strong>Services:</strong> Construction, Project Management</li>
+                        </ul>
+                        <a href="#" class="btn-project-details">View Case Study</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/completed-project-2.jpg" alt="Luxury Villa Renovation">
+                    <div class="project-info">
+                        <h4>Harmony Villa Makeover</h4>
+                        <p class="project-category">Residential Renovation</p>
+                        <p class="project-description">Complete interior and exterior renovation of a luxury villa, blending classic aesthetics with modern amenities.</p>
+                        <ul class="project-meta">
+                            <li><strong>Location:</strong> Lakeside Estate</li>
+                            <li><strong>Completion:</strong> January 2023</li>
+                            <li><strong>Services:</strong> Renovation, Interior Design</li>
+                        </ul>
+                        <a href="#" class="btn-project-details">View Case Study</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/completed-project-3.jpg" alt="Hospital Facility Upgrade">
+                    <div class="project-info">
+                        <h4>HealthBridge Medical Center Upgrade</h4>
+                        <p class="project-category">Maintenance & Upgrade</p>
+                        <p class="project-description">Comprehensive facility maintenance and HVAC system upgrade for a regional medical center, ensuring optimal patient comfort.</p>
+                        <ul class="project-meta">
+                            <li><strong>Location:</strong> Northside Health Campus</li>
+                            <li><strong>Completion:</strong> August 2022</li>
+                            <li><strong>Services:</strong> Preventive Maintenance, System Upgrade</li>
+                        </ul>
+                        <a href="#" class="btn-project-details">View Case Study</a>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+    </section>
+
+    <section class="section call-to-action bg-primary-dark">
+        <div class="container">
+            <h3>Inspired by our achievements?</h3>
+            <p>Let's collaborate to make your next project a success story.</p>
+            <button onclick="window.location.href='contact.html'">Get in Touch</button>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>
         </div>
     </footer>
 </body>
+
 </html>

@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maintenance Services | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
-
     <header class="header-bar">
         <div class="container header-container">
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
+            <div class="hamburger">&#9776;</div>
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
                         <a href="about.html">About Us</a>
                     </li>
                     <li>
-                        <a href="services.html">Services</a>
+                        <a href="services.html" class="active">Services</a>
                         <ul>
                             <li><a href="construction.html">Construction</a></li>
-                            <li><a href="maintenance.html">Maintenance</a></li>
-                            <li><a href="renovation.html">Renovation</a></li>
+                            <li><a href="maintenance.html" class="active">Maintenance</a></li> <li><a href="renovation.html">Renovation</a></li>
                         </ul>
                     </li>
                     <li>
@@ -45,17 +44,91 @@
         </div>
     </header>
 
-    <section class="section bg-services">
+    <section id="maintenance-hero" class="hero-section bg-services">
+        <div class="overlay"></div>
         <div class="container">
-            <h2>Maintenance Services</h2>
-            <p>Details about maintenance services will go here.</p>
+            <h2>Reliable Maintenance Services</h2>
+            <p>Ensuring longevity and optimal performance for your valuable assets.</p>
         </div>
     </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <h3>Comprehensive Maintenance Solutions</h3>
+            <p class="section-description">Uruk General Contracting offers a full spectrum of maintenance services designed to preserve the functionality, safety, and aesthetic appeal of your properties and facilities.</p>
+
+            <div class="service-detail-grid">
+                <div class="service-detail-item">
+                    <img src="images/maintenance-preventive.jpg" alt="Preventive Maintenance">
+                    <h4>Preventive Maintenance</h4>
+                    <p>Proactive solutions to prevent breakdowns, extend asset life, and reduce costly emergency repairs.</p>
+                    <ul>
+                        <li>Regular Inspections & Servicing</li>
+                        <li>HVAC System Checks</li>
+                        <li>Plumbing & Electrical System Maintenance</li>
+                        <li>Roofing & Structural Checks</li>
+                    </ul>
+                </div>
+                <div class="service-detail-item">
+                    <img src="images/maintenance-corrective.jpg" alt="Corrective Maintenance">
+                    <h4>Corrective Maintenance</h4>
+                    <p>Swift and efficient repairs to address issues and restore functionality with minimal downtime.</p>
+                    <ul>
+                        <li>Emergency Repairs</li>
+                        <li>Component Replacement</li>
+                        <li>System Troubleshooting</li>
+                        <li>Structural Repairs</li>
+                    </ul>
+                </div>
+                <div class="service-detail-item">
+                    <img src="images/maintenance-facility.jpg" alt="Facility Management">
+                    <h4>Facility Management</h4>
+                    <p>Integrated services to manage and optimize the operations and maintenance of your buildings.</p>
+                    <ul>
+                        <li>On-site Facility Management</li>
+                        <li>Landscape & Grounds Maintenance</li>
+                        <li>Cleaning & Janitorial Services</li>
+                        <li>Security System Maintenance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-highlight-section">
+                <h4>Benefits of Our Maintenance Programs</h4>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <h5>Extended Asset Lifespan</h5>
+                        <p>Maximize the longevity of your investments.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h5>Reduced Operational Costs</h5>
+                        <p>Minimize unexpected expenses and downtime.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h5>Enhanced Safety & Compliance</h5>
+                        <p>Ensure systems meet all safety regulations.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h5>Tailored Service Agreements</h5>
+                        <p>Flexible plans to fit your specific needs and budget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section call-to-action bg-primary-dark">
+        <div class="container">
+            <h3>Protect your investment.</h3>
+            <p>Discuss your maintenance needs with our specialists for a customized plan.</p>
+            <button onclick="window.location.href='contact.html'">Schedule Maintenance</button>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>
         </div>
     </footer>
 </body>
-
 </html>

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -14,6 +16,7 @@
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
+            <div class="hamburger">&#9776;</div>
             <nav class="nav-bar">
                 <ul class="menu">
                     <li><a href="index.html">Home</a></li>
@@ -29,59 +32,98 @@
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="clients.html">Clients</a></li>
                     <li><a href="jobs.html">Jobs</a></li>
-                    <li><a href="contact.html" class="active">Contact Us</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html" class="active">Contact Us</a></li> <li><a href="testimonials.html">Testimonials</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="section bg-contact">
+    <section id="contact-hero" class="hero-section bg-contact">
+        <div class="overlay"></div>
         <div class="container">
-            <h1>Contact Us</h1>
-            <p>We'd love to hear from you! Reach out to us for inquiries, quotes, or assistance.</p>
+            <h2>Get In Touch With Us</h2>
+            <p>We're here to answer your questions and help you with your next project.</p>
         </div>
+    </section>
 
-
-
-        <div class="map-container">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.230048457684!2d54.57256!3d24.42299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDI1JzEwLjgiTiA1NMKwMzQnMjYuOSJF!5e0!3m2!1sen!2sus!4v1699889169284!"
-                width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-
-
-
-
+    <section class="section content-section contact-page-content">
         <div class="container">
-            <div class="contact-details">
-                <h2>We Build Everything That You Need!</h2>
-                <p>Interested in our services or need advice? Reach out to us, and we'll be glad to assist you!</p>
-                <ul>
-                    <li><strong>Address:</strong> Abu Dhabi, UAE</li>
-                    <li><strong>Phone:</strong> +971 0504415261</li>
-                    <li><strong>Email:</strong> info@urukgc.com</li>
-                </ul>
-            </div>
-            <div class="contact-form-container">
-                <h2>Get A Quote!</h2>
-                <form action="submit_form.php" method="POST" class="contact-form">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p class="section-description">We are here to assist you with any inquiries. Feel free to reach out via phone, email, or visit our office.</p>
+                    
+                    <ul class="contact-list">
+                        <li>
+                            <i class="icon-location"></i> <strong>Address:</strong> Abu Dhabi, United Arab Emirates
+                        </li>
+                        <li>
+                            <i class="icon-phone"></i> <strong>Phone:</strong> +971 50 441 5261
+                        </li>
+                        <li>
+                            <i class="icon-email"></i> <strong>Email:</strong> info@urukgc.com
+                        </li>
+                        <li>
+                            <i class="icon-clock"></i> <strong>Working Hours:</strong> Sunday - Thursday: 8:00 AM - 5:00 PM
+                        </li>
+                    </ul>
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" target="_blank"><img src="images/icon-facebook.png" alt="Facebook"></a>
+                        <a href="#" class="social-icon" target="_blank"><img src="images/icon-linkedin.png" alt="LinkedIn"></a>
+                        <a href="#" class="social-icon" target="_blank"><img src="images/icon-twitter.png" alt="Twitter"></a>
+                        <a href="#" class="social-icon" target="_blank"><img src="images/icon-instagram.png" alt="Instagram"></a>
+                    </div>
+                </div>
 
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
+                <div class="contact-form-container">
+                    <h3>Send Us a Message / Get a Quote</h3>
+                    <form action="submit_form.php" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
 
-                    <button type="submit">Submit</button>
-                </form>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="e.g., +971 50 123 4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Briefly describe your inquiry">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Tell us more about your project or inquiry..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
+    <section class="map-section">
+        <div class="container">
+            <h3>Our Location</h3>
+            <p class="section-description">Find us easily on the map. We look forward to welcoming you.</p>
+        </div>
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.230048457684!2d54.57256!3d24.42299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDI1JzEwLjgiTiA1NMKwMzQnMjYuOSJF!5e0!3m2!1sen!2sus!4v1699889169284!"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>
         </div>

@@ -6,23 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 
 <body>
-
-
     <header class="header-bar">
         <div class="container header-container">
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
-            <nav class="nav-bar">
+            <div class="hamburger">&#9776;</div> <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
-                        <a href="about.html">About Us</a>
-                    </li>
+                        <a href="about.html" class="active">About Us</a> </li>
                     <li>
                         <a href="services.html">Services</a>
                         <ul>
@@ -47,11 +45,82 @@
         </div>
     </header>
 
-    <section id="about" class="section bg-about">
+    <section id="about-hero" class="hero-section bg-about">
+        <div class="overlay"></div>
         <div class="container">
-            <h2>About Us</h2>
-            <p>Uruk General Contracting and Maintenance is a premier service provider, delivering top-notch construction
-                and maintenance solutions for over 15 years.</p>
+            <h2>About Uruk General Contracting</h2>
+            <p>Your trusted partner in construction and maintenance services, built on a foundation of excellence.</p>
+        </div>
+    </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <h3>Our Journey and Commitment</h3>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Uruk General Contracting and Maintenance has been a beacon of reliability and quality in the construction and maintenance industry for over 15 years. Founded on principles of integrity, innovation, and unwavering client satisfaction, we've grown from a humble beginning into a reputable leader.</p>
+                    <p>Our commitment extends beyond just completing projects; we aim to build lasting relationships through transparent processes, exceptional craftsmanship, and a deep understanding of our clients' needs. Every project we undertake is a testament to our dedication to excellence.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-vision.jpg" alt="Our Vision">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section vision-mission-section bg-light">
+        <div class="container">
+            <div class="vision-mission-grid">
+                <div class="card">
+                    <h4>Our Vision</h4>
+                    <p>To be the leading general contracting and maintenance company, recognized for our commitment to quality, safety, and sustainable building practices, creating a lasting impact on communities we serve.</p>
+                </div>
+                <div class="card">
+                    <h4>Our Mission</h4>
+                    <p>To deliver superior construction and maintenance solutions by leveraging cutting-edge technology, fostering a highly skilled workforce, and adhering to the highest standards of professionalism and ethical conduct.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section values-section">
+        <div class="container">
+            <h3>Our Core Values</h3>
+            <div class="values-grid">
+                <div class="value-item">
+                    <img src="images/icon-integrity.png" alt="Integrity Icon">
+                    <h4>Integrity</h4>
+                    <p>Upholding the highest ethical standards in all our dealings.</p>
+                </div>
+                <div class="value-item">
+                    <img src="images/icon-quality.png" alt="Quality Icon">
+                    <h4>Quality Excellence</h4>
+                    <p>Delivering superior results that stand the test of time.</p>
+                </div>
+                <div class="value-item">
+                    <img src="images/icon-safety.png" alt="Safety Icon">
+                    <h4>Safety First</h4>
+                    <p>Prioritizing the well-being of our team and clients.</p>
+                </div>
+                <div class="value-item">
+                    <img src="images/icon-innovation.png" alt="Innovation Icon">
+                    <h4>Innovation</h4>
+                    <p>Embracing new technologies and methods for efficiency.</p>
+                </div>
+                <div class="value-item">
+                    <img src="images/icon-client.png" alt="Client Satisfaction Icon">
+                    <h4>Client Satisfaction</h4>
+                    <p>Exceeding client expectations through dedicated service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section call-to-action bg-primary-dark">
+        <div class="container">
+            <h3>Ready to start your next project?</h3>
+            <p>Contact us today for a consultation and let's build your vision together.</p>
+            <button onclick="window.location.href='contact.html'">Get a Free Quote</button>
         </div>
     </section>
 

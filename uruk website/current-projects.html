@@ -1,22 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Current Projects | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
-    
     <header class="header-bar">
         <div class="container header-container">
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
+            <div class="hamburger">&#9776;</div>
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
                         <a href="about.html">About Us</a>
                     </li>
@@ -29,9 +32,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="projects.html">Projects</a>
+                        <a href="projects.html" class="active">Projects</a>
                         <ul>
-                            <li><a href="current-projects.html">Current Projects</a></li>
+                            <li><a href="current-projects.html" class="active">Current Projects</a></li>
                             <li><a href="completed-projects.html">Completed Projects</a></li>
                         </ul>
                     </li>
@@ -44,16 +47,81 @@
         </div>
     </header>
 
-    <section class="section bg-services">
+    <section id="current-projects-hero" class="hero-section bg-projects">
+        <div class="overlay"></div>
         <div class="container">
-            <h2>Current Projects</h2>
-            <p>Details about current projects will go here.</p>
+            <h2>Our Current Engagements</h2>
+            <p>Witness our projects in motion, shaping tomorrow's landscapes.</p>
         </div>
     </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <h3>Projects Under Development</h3>
+            <p class="section-description">Explore a selection of our ongoing projects, demonstrating our active involvement in diverse sectors and our commitment to progress.</p>
+
+            <div class="project-gallery-grid">
+                <div class="project-card">
+                    <img src="images/current-project-1.jpg" alt="High-Rise Residential Complex">
+                    <div class="project-info">
+                        <h4>Grand Sky Tower</h4>
+                        <p class="project-category">Residential Construction</p>
+                        <p class="project-description">A state-of-the-art high-rise residential complex featuring smart home technologies and eco-friendly designs in the heart of the city.</p>
+                        <ul class="project-meta">
+                            <li><strong>Location:</strong> Downtown Cityville</li>
+                            <li><strong>Status:</strong> 70% Completed</li>
+                            <li><strong>Est. Completion:</strong> Q4 2025</li>
+                        </ul>
+                        <a href="#" class="btn-project-details">View Details</a> </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/current-project-2.jpg" alt="Industrial Park Expansion">
+                    <div class="project-info">
+                        <h4>Innovate Industrial Hub</h4>
+                        <p class="project-category">Industrial Construction</p>
+                        <p class="project-description">Expansion of a major industrial park, including new manufacturing units, logistics centers, and improved infrastructure.</p>
+                        <ul class="project-meta">
+                            <li><strong>Location:</strong> Industrial Zone North</li>
+                            <li><strong>Status:</strong> 45% Completed</li>
+                            <li><strong>Est. Completion:</strong> Q2 2026</li>
+                        </ul>
+                        <a href="#" class="btn-project-details">View Details</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/current-project-3.jpg" alt="Urban Park Renovation">
+                    <div class="project-info">
+                        <h4>Green Oasis Park Renovation</h4>
+                        <p class="project-category">Urban Renovation</p>
+                        <p class="project-description">Revitalizing a large urban park to include new recreational facilities, sustainable landscaping, and enhanced public spaces.</p>
+                        <ul class="project-meta">
+                            <li><strong>Location:</strong> Central District</li>
+                            <li><strong>Status:</strong> 60% Completed</li>
+                            <li><strong>Est. Completion:</strong> Q3 2025</li>
+                        </ul>
+                        <a href="#" class="btn-project-details">View Details</a>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+    </section>
+
+    <section class="section call-to-action bg-primary-dark">
+        <div class="container">
+            <h3>Inspired by our ongoing progress?</h3>
+            <p>Connect with us to discuss how we can bring your vision to life.</p>
+            <button onclick="window.location.href='contact.html'">Inquire About Projects</button>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>
         </div>
     </footer>
 </body>
+
 </html>

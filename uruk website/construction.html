@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,25 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Construction Services | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
     <header class="header-bar">
         <div class="container header-container">
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
+            <div class="hamburger">&#9776;</div>
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
                         <a href="about.html">About Us</a>
                     </li>
                     <li>
-                        <a href="services.html">Services</a>
+                        <a href="services.html" class="active">Services</a>
                         <ul>
-                            <li><a href="construction.html">Construction</a></li>
-                            <li><a href="maintenance.html">Maintenance</a></li>
+                            <li><a href="construction.html" class="active">Construction</a></li> <li><a href="maintenance.html">Maintenance</a></li>
                             <li><a href="renovation.html">Renovation</a></li>
                         </ul>
                     </li>
@@ -44,12 +44,87 @@
         </div>
     </header>
 
-    <section class="section bg-services">
+    <section id="construction-hero" class="hero-section bg-services">
+        <div class="overlay"></div>
         <div class="container">
-            <h2>Construction Services</h2>
-            <p>Details about construction services will go here.</p>
+            <h2>Expert Construction Services</h2>
+            <p>Building the future, one strong foundation at a time.</p>
         </div>
     </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <h3>Our Approach to Construction Excellence</h3>
+            <p class="section-description">Uruk General Contracting specializes in delivering comprehensive construction solutions from concept to completion. Our expertise spans various sectors, ensuring every project is executed with precision, safety, and superior quality.</p>
+
+            <div class="service-detail-grid">
+                <div class="service-detail-item">
+                    <img src="images/construction-commercial.jpg" alt="Commercial Construction">
+                    <h4>Commercial & Industrial Projects</h4>
+                    <p>We undertake large-scale commercial buildings, industrial facilities, and infrastructure projects, focusing on timely delivery and adherence to stringent industry standards.</p>
+                    <ul>
+                        <li>Office Buildings & Complexes</li>
+                        <li>Retail Centers & Malls</li>
+                        <li>Warehouses & Factories</li>
+                        <li>Hospitality Structures</li>
+                    </ul>
+                </div>
+                <div class="service-detail-item">
+                    <img src="images/construction-residential.jpg" alt="Residential Construction">
+                    <h4>Residential Developments</h4>
+                    <p>Crafting dream homes and modern residential complexes with attention to architectural detail and homeowner satisfaction.</p>
+                    <ul>
+                        <li>Custom Home Builds</li>
+                        <li>Multi-Unit Residential Buildings</li>
+                        <li>Apartment Complexes</li>
+                        <li>Luxury Villas</li>
+                    </ul>
+                </div>
+                <div class="service-detail-item">
+                    <img src="images/construction-infrastructure.jpg" alt="Infrastructure Development">
+                    <h4>Infrastructure Development</h4>
+                    <p>Contributing to essential public works with robust and sustainable infrastructure solutions.</p>
+                    <ul>
+                        <li>Roads and Bridges</li>
+                        <li>Water & Wastewater Treatment Plants</li>
+                        <li>Utilities & Energy Facilities</li>
+                        <li>Public Sector Buildings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-highlight-section">
+                <h4>Why Choose Us for Your Construction Needs?</h4>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <h5>Project Management Expertise</h5>
+                        <p>Seamless execution from planning to handover.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h5>Adherence to Safety Standards</h5>
+                        <p>A commitment to safe working environments for all.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h5>Quality Materials & Craftsmanship</h5>
+                        <p>Building structures that last with the finest resources.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h5>Timely Delivery & Budget Control</h5>
+                        <p>Efficient project completion within agreed parameters.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section call-to-action bg-primary-dark">
+        <div class="container">
+            <h3>Ready to build something great?</h3>
+            <p>Partner with us for your next construction venture. Contact our experts today.</p>
+            <button onclick="window.location.href='contact.html'">Start Your Project</button>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>

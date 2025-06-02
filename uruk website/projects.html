@@ -1,21 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Uruk General Contracting</title>
+    <title>Our Projects | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
     <header class="header-bar">
         <div class="container header-container">
             <div class="logo">
                 <img src="logo.png" alt="Company Logo" />
             </div>
+            <div class="hamburger">&#9776;</div>
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
                         <a href="about.html">About Us</a>
                     </li>
@@ -28,7 +32,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="projects.html">Projects</a>
+                        <a href="projects.html" class="active">Projects</a>
                         <ul>
                             <li><a href="current-projects.html">Current Projects</a></li>
                             <li><a href="completed-projects.html">Completed Projects</a></li>
@@ -42,16 +46,51 @@
             </nav>
         </div>
     </header>
-    <section class="section bg-projects">
+
+    <section id="projects-hero" class="hero-section bg-projects">
+        <div class="overlay"></div>
         <div class="container">
-            <h2>Our Projects</h2>
-            <p>Discover our completed and ongoing projects, showcasing our dedication to quality and innovation.</p>
+            <h2>Our Portfolio of Excellence</h2>
+            <p>Showcasing our commitment to quality, innovation, and client success.</p>
         </div>
     </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <h3>Explore Our Work</h3>
+            <p class="section-description">At Uruk General Contracting, every project is a testament to our dedication. Browse through our ongoing initiatives and successful ventures to see our capabilities in action.</p>
+
+            <div class="project-overview-grid">
+                <a href="current-projects.html" class="overview-card">
+                    <img src="images/current-projects-overview.jpg" alt="Current Projects Icon">
+                    <h4>Current Projects</h4>
+                    <p>Discover the cutting-edge developments and ongoing construction phases where we are actively making progress.</p>
+                    <span class="view-link">View Current Projects &rarr;</span>
+                </a>
+
+                <a href="completed-projects.html" class="overview-card">
+                    <img src="images/completed-projects-overview.jpg" alt="Completed Projects Icon">
+                    <h4>Completed Projects</h4>
+                    <p>See the successful outcomes of our dedication to quality, delivered on time and within budget.</p>
+                    <span class="view-link">View Completed Projects &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section call-to-action bg-primary-dark">
+        <div class="container">
+            <h3>Have a vision? Let's build it together.</h3>
+            <p>If you're inspired by our work, we'd love to hear about your next project.</p>
+            <button onclick="window.location.href='contact.html'">Discuss Your Project</button>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>
         </div>
     </footer>
 </body>
+
 </html>
