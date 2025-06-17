@@ -1581,3 +1581,33 @@ footer {
         min-width: unset;
     }
 }
+/* Employee Login Section */
+.login-section {
+    padding: 60px 0;
+    text-align: center;
+}
+.login-section form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.login-section input {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.login-section button {
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.login-section .error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.dashboard-section {
+    padding: 60px 0;
+}

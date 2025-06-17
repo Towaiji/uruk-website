@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Uruk General Contracting</title>
+    <title>Employee Login | Uruk General Contracting</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="auth.js" defer></script>
 </head>
-
 <body>
     <header class="header-bar">
         <div class="container header-container">
@@ -19,10 +20,8 @@
             <div class="hamburger">&#9776;</div>
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li>
-                        <a href="about.html">About Us</a>
-                    </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
                     <li>
                         <a href="services.html">Services</a>
                         <ul>
@@ -42,27 +41,26 @@
                     <li><a href="jobs.html">Jobs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="login.html">Employee Login</a></li>
+                    <li><a href="login.html" class="active">Employee Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <section id="hero" class="hero-section">
-        <div class="overlay"></div>
+    <section class="login-section">
         <div class="container">
-            <h2>Welcome to Uruk General Contracting and Maintenance</h2>
-            <p>Your trusted partner in construction and maintenance services.</p>
-            <h3 class="tagline">We make your dreams into a reality</h3>
-            <button onclick="window.location.href='contact.html'">Contact Us</button>
+            <h2>Employee Login</h2>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <p id="login-error" class="error-message"></p>
         </div>
     </section>
-
     <footer>
         <div class="container">
             <p>&copy; 2024 Uruk General Contracting and Maintenance. All rights reserved.</p>
         </div>
     </footer>
 </body>
-
 </html>
