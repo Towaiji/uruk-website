@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar | Uruk General Contracting</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="script.js" defer></script>
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+    }
+    .two-column {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .two-column > section {
+      flex: 1;
+      min-width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main-header"></div>
+
+    <section id="calendar" class="section">
+      <div class="container">
+        <h3><i class="fa-solid fa-calendar-days"></i> Calendar</h3>
+        <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&showTabs=0&mode=MONTH" style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Uruk General Contracting. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
