@@ -1730,3 +1730,84 @@ footer {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+/* Projects and Tasks Page Specific Styles */
+.projects-tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.project-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(128,0,0,0.10), 0 1.5px 4px rgba(128,0,0,0.08);
+  padding: 28px 26px 22px 26px;
+  transition: transform 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s;
+  position: relative;
+  min-width: 0;
+}
+.project-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(128,0,0,0.13);
+}
+
+.project-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.task-list li {
+  background: var(--light-text-color);
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  box-shadow: 0 1px 2px rgba(128,0,0,0.04);
+  transition: background 0.18s;
+}
+.task-list li:last-child {
+  margin-bottom: 0;
+}
+.task-list input[type="checkbox"] {
+  accent-color: var(--primary-color);
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+}
+.task-list label {
+  font-size: 1.07rem;
+  color: var(--text-color);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.task-list input[type="checkbox"]:checked + label {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+@media (max-width: 600px) {
+  .projects-tasks-grid {
+    grid-template-columns: 1fr;
+  }
+  .project-card {
+    padding: 20px 10px;
+  }
+}
+
