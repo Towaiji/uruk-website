@@ -1,57 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Employee Portal | Uruk General Contracting</title>
+  <title>Projects | Uruk Employee Portal</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="script.js" defer></script>
-  <style>
-    html, body {
-      height: 100%;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-    main {
-      flex: 1;
-    }
-    .two-column {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .two-column > section {
-      flex: 1;
-      min-width: 300px;
-    }
-  </style>
 </head>
-
 <body>
   <div id="main-header"></div>
 
-  <div class="container">
-          <h3><i class="fa-solid fa-list-check"></i> Tasks</h3>
-          <ul class="checklist">
-            <li style="list-style: none;"><input type="checkbox" checked disabled> Inspect HVAC System</li>
-            <li style="list-style: none;"><input type="checkbox" disabled> Submit progress report</li>
-            <li style="list-style: none;"><input type="checkbox" checked disabled> Review structural plans</li>
-            <li style="list-style: none;"><input type="checkbox" disabled> Update project documentation</li>
-            <li style="list-style: none;"><input type="checkbox" checked disabled> Attend site safety briefing</li>
+  <main class="section">
+    <div class="container">
+      <h2><i class="fa-solid fa-list-check"></i> Tasks</h2>
+
+      <div class="carousel-wrapper">
+        <button class="scroll-btn left"><i class="fa-solid fa-chevron-left"></i></button>
+
+        <div class="project-carousel">
+          <div class="project-card">
+            <img src="../images/project1.jpg" alt="Project Alpha">
+            <p></p><h4>Project Alpha</h4></p>
+            <strong>Location: Abu Dhabi Central</strong>
+            <strong>Role: Engineer</strong> 
+            <p><strong>Status:</strong> In Progress</p>
+            <ul class="checklist">
+            <li style="list-style: none;"><input type="checkbox" > Inspect HVAC System</li>
+            <li style="list-style: none;"><input type="checkbox" > Submit progress report</li>
+            <li style="list-style: none;"><input type="checkbox" > Review structural plans</li>
+            <li style="list-style: none;"><input type="checkbox" > Update project documentation</li>
+            <li style="list-style: none;"><input type="checkbox" > Attend site safety briefing</li>
           </ul>
+          </div>
+
+          <div class="project-card">
+            <img src="../images/project2.jpg" alt="Project Beta">
+            <p></p><h4>Project Beta</h4></p>
+            <strong>Location: Al Ain</strong>
+            <strong>Role: Engineer</strong> 
+            <p><strong>Status:</strong> Completed</p>
+            <ul class="checklist">
+            <li style="list-style: none;"><input type="checkbox" > Inspect HVAC System</li>
+            <li style="list-style: none;"><input type="checkbox" > Submit progress report</li>
+            <li style="list-style: none;"><input type="checkbox" > Review structural plans</li>
+            <li style="list-style: none;"><input type="checkbox" > Update project documentation</li>
+            <li style="list-style: none;"><input type="checkbox" > Attend site safety briefing</li>
+          </ul>
+          </div>
+
+          <div class="project-card">
+            <img src="../images/project3.jpg" alt="Project Gamma">
+            <p></p><h4>Project Gamma</h4></p>
+            <strong>Location: Dubai Marina</strong>
+            <strong>Role: Engineer</strong> 
+            <p><strong>Status:</strong> Starting Soon</p>
+            <ul class="checklist">
+            <li style="list-style: none;"><input type="checkbox" > Inspect HVAC System</li>
+            <li style="list-style: none;"><input type="checkbox" > Submit progress report</li>
+            <li style="list-style: none;"><input type="checkbox" > Review structural plans</li>
+            <li style="list-style: none;"><input type="checkbox" > Update project documentation</li>
+            <li style="list-style: none;"><input type="checkbox" > Attend site safety briefing</li>
+          </ul>
+          </div>
+
+          <div class="project-card">
+            <img src="../images/bg2.jpg" alt="Project Delta">
+            <p></p><h4>Project Delta</h4></p>
+            <strong>Location: Al Ain</strong>
+            <strong>Role: Engineer</strong> 
+            <p><strong>Status:</strong> Completed</p>
+            <ul class="checklist">
+            <li style="list-style: none;"><input type="checkbox" > Inspect HVAC System</li>
+            <li style="list-style: none;"><input type="checkbox" > Submit progress report</li>
+            <li style="list-style: none;"><input type="checkbox" > Review structural plans</li>
+            <li style="list-style: none;"><input type="checkbox" > Update project documentation</li>
+            <li style="list-style: none;"><input type="checkbox" > Attend site safety briefing</li>
+          </ul>
+          </div>
         </div>
+
+        <button class="scroll-btn right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
     </div>
+  </main>
 
   <footer>
     <div class="container">
       <p>&copy; 2024 Uruk General Contracting. All rights reserved.</p>
     </div>
   </footer>
-</body>
 
+</body>
 </html>

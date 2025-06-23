@@ -2,66 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel | Uruk GC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel | Uruk General Contracting</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
   <script src="script.js" defer></script>
 </head>
 <body>
   <div id="main-header"></div>
 
-  <main class="section">
-    <div class="container">
-      <h2><i class="fa-solid fa-user-shield"></i> Admin Panel</h2>
+  <main class="container">
+    <h1><i class="fa-solid fa-user-tie"></i> Admin Panel</h1>
 
-      <!-- Assign Task Section -->
-      <section class="admin-section">
-        <h3>Assign Task</h3>
-        <form class="admin-form" onsubmit="return false;">
-          <label for="employee">Select Employee:</label>
-          <select id="employee">
-            <option value="john">John Doe</option>
-            <option value="jane">Jane Smith</option>
-            <option value="ali">Ali Hussein</option>
+    <div class="admin-container">
+
+      <!-- LEFT: Filter and Select Employee -->
+      <section class="admin-panel">
+        <h3><i class="fa-solid fa-users-gear"></i> Search & Select Employee</h3>
+
+        <div class="filter-group">
+          <input type="text" id="filter-name" placeholder="Search by name..." />
+          <select id="filter-role">
+            <option value="">All Roles</option>
+            <option value="engineer">Engineer</option>
+            <option value="manager">Manager</option>
+            <option value="foreman">Foreman</option>
           </select>
+          <select id="filter-project">
+            <option value="">All Projects</option>
+            <option value="Alpha">Alpha</option>
+            <option value="Beta">Beta</option>
+            <option value="Gamma">Gamma</option>
+          </select>
+        </div>
 
-          <label for="task">Task:</label>
-          <input type="text" id="task" placeholder="Enter task" required />
-
-          <button type="submit">Assign Task</button>
-        </form>
-        <div id="task-output"></div>
+        <div class="results" id="employee-results">
+          <!-- Placeholder employees (these would be dynamic from backend) -->
+          <p><strong>User A</strong> – Engineer – Project Alpha</p>
+          <p><strong>User B</strong> – Manager – Project Beta</p>
+        </div>
       </section>
 
-      <!-- Send Report Section -->
-      <section class="admin-section">
-        <h3>Send Report</h3>
-        <form class="admin-form" onsubmit="return false;">
-          <label for="report-recipient">Recipient Email:</label>
-          <input type="text" id="report-recipient" placeholder="example@company.com" required />
+      <!-- RIGHT: Assign Tasks & Send Report -->
+      <section class="admin-panel">
+        <h3><i class="fa-solid fa-tasks"></i> Assign Task</h3>
+        <label for="task-desc">Task Description</label>
+        <textarea id="task-desc" rows="3" placeholder="e.g. Inspect electrical wiring..."></textarea>
 
-          <label for="report-content">Report Content:</label>
-          <textarea id="report-content" rows="6" placeholder="Write your report here..." required></textarea>
+        <label for="due-date">Due Date</label>
+        <input type="date" id="due-date" />
 
-          <button type="submit">Send Report</button>
-        </form>
+        <button class="btn" onclick="assignTask()">Assign Task</button>
+
+        <hr style="margin: 30px 0;" />
+
+        <h3><i class="fa-solid fa-paper-plane"></i> Send Report</h3>
+        <label for="report-message">Message</label>
+        <textarea id="report-message" rows="3" placeholder="e.g. Here's the weekly summary..."></textarea>
+
+        <button class="btn" onclick="sendReport()">Send Report</button>
       </section>
     </div>
   </main>
 
   <footer>
-    <div class="container">
+    <div class="container" style="margin-bottom: 50px;">
       <p>&copy; 2024 Uruk General Contracting. All rights reserved.</p>
     </div>
   </footer>
 
-  <script>
-    document.querySelector('.admin-form').addEventListener('submit', function () {
-      const emp = document.getElementById('employee').value;
-      const task = document.getElementById('task').value;
-      document.getElementById('task-output').innerHTML = `<p><strong>Assigned to ${emp}:</strong> ${task}</p>`;
-    });
-  </script>
 </body>
 </html>
