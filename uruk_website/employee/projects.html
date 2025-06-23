@@ -10,22 +10,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="script.js" defer></script>
   <style>
-    html, body {
+    html,
+    body {
       height: 100%;
     }
+
     body {
       display: flex;
       flex-direction: column;
     }
+
     main {
       flex: 1;
     }
+
     .two-column {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
     }
-    .two-column > section {
+
+    .two-column>section {
       flex: 1;
       min-width: 300px;
     }
@@ -36,18 +41,45 @@
   <div id="main-header"></div>
 
   <div class="container">
-      <section id="projects" class="section">
-          <h3><i class="fa-solid fa-diagram-project"></i> Projects</h3>
-          <ul class="checklist">
-            <li style="list-style: none;">Project Alpha - Status: In Progress</li>
-            <li style="list-style: none;">Project Beta - Status: Completed</li>
-          </ul>
-          <div class="project-description">
-            <h4>Project Overview</h4>
-            <p><strong>Alpha:</strong> Ongoing commercial tower construction in central Abu Dhabi. Scheduled to complete by Q4.</p>
-            <p><strong>Beta:</strong> Recently finished renovation of government facility. Includes full MEP and interior fit-out.</p>
+    <section id="projects" class="section">
+      <h3><i class="fa-solid fa-diagram-project"></i> Projects</h3>
+      <div class="project-gallery-grid">
+        <!-- Example Project Card 1 -->
+        <div class="project-card">
+          <img src="images/projectA.jpg" alt="Project Alpha">
+          <div class="project-info">
+            <h4>Project Alpha</h4>
+            <p class="project-category">Commercial Construction</p>
+            <p class="project-description">A 15-story modern office building, designed for LEED certification with
+              integrated smart systems.</p>
+            <ul class="project-meta">
+              <li><strong>Location:</strong> Financial District</li>
+              <li><strong>Completion:</strong> March 2024</li>
+              <li><strong>Services:</strong> Construction, Project Management</li>
+            </ul>
+            <a href="#" class="btn-project-details">View Project</a>
+          </div>
         </div>
-    </div>
+        <!-- Example Project Card 2 -->
+        <div class="project-card">
+          <img src="images/completed-projectB.jpg" alt="Project Beta">
+          <div class="project-info">
+            <h4>Project Beta</h4>
+            <p class="project-category">Renovation</p>
+            <p class="project-description">Full renovation including MEP and interior fit-out, completed ahead of
+              schedule.</p>
+            <ul class="project-meta">
+              <li><strong>Location:</strong> Central Abu Dhabi</li>
+              <li><strong>Completion:</strong> April 2024</li>
+              <li><strong>Services:</strong> Renovation, Interior Fit-Out</li>
+            </ul>
+            <a href="#" class="btn-project-details">View Project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
 
   <footer>
     <div class="container">
