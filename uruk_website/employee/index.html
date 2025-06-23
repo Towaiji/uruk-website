@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Uruk Employee Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="script.js" defer></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    body {
+      background: url('red.jpg') no-repeat center center/cover;
+      background-attachment: fixed;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .top-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .top-buttons .btn {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .top-buttons .btn:hover {
+      background-color: var(--secondary-color);
+    }
+    .contact-support {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    .contact-support button {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    .contact-support button:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    .landing-message {
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+    }
+    .landing-message h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: var(--secondary-color);
+    }
+    .landing-message p {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+
+<body class="overlay">
+  <div id="main-header"></div>
+
+  <main>
+    <section class="dashboard-header center-text">
+      <div class="landing-message">
+        <h1>Welcome, <span class="highlight">[Employee Name]</span></h1>
+        <p>Your personalized dashboard to manage projects, tasks, and communications.</p>
+      </div>
+    </section>
+
+    <div class="top-buttons">
+      <a href="profile.html" class="btn">Profile</a>
+      <a href="calendar.html" class="btn">Calendar</a>
+      <a href="tasks.html" class="btn">Tasks</a>
+      <a href="tasks.html" class="btn">Support</a>
+    </div>
+  </main>
+
+
+
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Uruk General Contracting. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

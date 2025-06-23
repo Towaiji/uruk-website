@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel | Uruk General Contracting</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("main-header").innerHTML = data;
+
+        // Optional: Set active class based on current page
+        const links = document.querySelectorAll(".nav-bar a");
+        links.forEach(link => {
+          if (link.href.includes(location.pathname)) {
+            link.classList.add("active");
+          }
+        });
+      });
+  });
+</script>
+
+  <style>
+    .admin-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .admin-panel {
+      flex: 1;
+      min-width: 350px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .admin-panel h3 {
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+
+    .admin-panel label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .admin-panel input,
+    .admin-panel select,
+    .admin-panel textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+      transform: translateY(-2px);
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-group input,
+    .filter-group select {
+      flex: 1;
+    }
+
+    .results {
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+      margin-top: 15px;
+    }
+
+    .results p {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="main-header"></div>
+
+  <main class="container">
+    <h2 style="margin-top: 40px; color: var(--primary-color);">Admin Panel</h2>
+
+    <div class="admin-container">
+
+      <!-- LEFT: Filter and Select Employee -->
+      <section class="admin-panel">
+        <h3><i class="fa-solid fa-users-gear"></i> Search & Select Employee</h3>
+
+        <div class="filter-group">
+          <input type="text" id="filter-name" placeholder="Search by name..." />
+          <select id="filter-role">
+            <option value="">All Roles</option>
+            <option value="engineer">Engineer</option>
+            <option value="manager">Manager</option>
+            <option value="foreman">Foreman</option>
+          </select>
+          <select id="filter-project">
+            <option value="">All Projects</option>
+            <option value="Alpha">Alpha</option>
+            <option value="Beta">Beta</option>
+            <option value="Gamma">Gamma</option>
+          </select>
+        </div>
+
+        <div class="results" id="employee-results">
+          <!-- Placeholder employees (these would be dynamic from backend) -->
+          <p><strong>User A</strong> – Engineer – Project Alpha</p>
+          <p><strong>User B</strong> – Manager – Project Beta</p>
+        </div>
+      </section>
+
+      <!-- RIGHT: Assign Tasks & Send Report -->
+      <section class="admin-panel">
+        <h3><i class="fa-solid fa-tasks"></i> Assign Task</h3>
+        <label for="task-desc">Task Description</label>
+        <textarea id="task-desc" rows="3" placeholder="e.g. Inspect electrical wiring..."></textarea>
+
+        <label for="due-date">Due Date</label>
+        <input type="date" id="due-date" />
+
+        <button class="btn" onclick="assignTask()">Assign Task</button>
+
+        <hr style="margin: 30px 0;" />
+
+        <h3><i class="fa-solid fa-paper-plane"></i> Send Report</h3>
+        <label for="report-message">Message</label>
+        <textarea id="report-message" rows="3" placeholder="e.g. Here's the weekly summary..."></textarea>
+
+        <button class="btn" onclick="sendReport()">Send Report</button>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Uruk General Contracting. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function assignTask() {
+      alert("Task assigned to selected employee.");
+    }
+
+    function sendReport() {
+      alert("Report sent to selected employee.");
+    }
+  </script>
+</body>
+</html>
