@@ -1,0 +1,10 @@
+[
+  {
+    "_id": {"$oid": "66e1d4e3f3b6da1de7a00001"},
+    "name": "Project A",
+    "client": "",
+    "members": [],
+    "location": "Dubai",
+    "description": "Aa..."
+  }
+]
