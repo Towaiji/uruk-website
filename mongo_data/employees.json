@@ -1,0 +1,21 @@
+[
+  {
+    "_id": {"$oid": "66e1d4e3f3b6da1de7a00002"},
+    "name": "John Doe",
+    "phone": "15678901",
+    "employee_id": "1901",
+    "tasks": [
+      {
+        "title": "Inspect HVAC System",
+        "status": "incomplete",
+        "project_id": {"$oid": "66e1d4e3f3b6da1de7a00001"}
+      },
+      {
+        "title": "Submit progress report",
+        "status": "incomplete",
+        "project_id": {"$oid": "66e1d4e3f3b6da1de7a00001"}
+      }
+    ],
+    "projects": [{"$oid": "66e1d4e3f3b6da1de7a00001"}]
+  }
+]
