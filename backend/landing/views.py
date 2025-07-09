@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 def home(req, name="home"):  # Default to "home" for the root
@@ -19,3 +19,9 @@ def login_user(req):
             return redirect('login_user')
 
     return render(req, "login_user.html", {})
+
+def log_out(req):
+    logout(req)
+    print("MY LOGOUT VIEW CALLED")
+    messages.error(req, "You were successfully logged out!")
+    return redirect('login_user')
