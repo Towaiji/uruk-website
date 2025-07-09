@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
 
 def home(req, name="home"):  # Default to "home" for the root

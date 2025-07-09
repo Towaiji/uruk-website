@@ -7,24 +7,7 @@
   <title>Admin Panel | Uruk General Contracting</title>
   <link rel="stylesheet" href="{% static 'styles.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    fetch("header.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("main-header").innerHTML = data;
-
-        // Optional: Set active class based on current page
-        const links = document.querySelectorAll(".nav-bar a");
-        links.forEach(link => {
-          if (link.href.includes(location.pathname)) {
-            link.classList.add("active");
-          }
-        });
-      });
-  });
-</script>
-
+  
   <style>
     .admin-container {
       display: flex;
@@ -105,7 +88,7 @@
   </style>
 </head>
 <body>
-  <div id="main-header"></div>
+  {% include "header.html" %}
 
   <main class="container">
     <h2 style="margin-top: 40px; color: var(--primary-color);">Admin Panel</h2>

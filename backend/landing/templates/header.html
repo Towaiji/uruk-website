@@ -11,8 +11,15 @@
         <li><a href="{% url 'projects' %}">Projects</a></li>
         <li><a href="{% url 'tasks' %}">Tasks</a></li>
         <li><a href="{% url 'profile' %}">Profile</a></li>
-        <li><a href="{% url 'admin' %}"><i class="fa-solid fa-lock"></i> Admin</a></li>
-        <li><a href="{% url 'admin' %}"><i class="fa-solid fa-bell"></i></a></li>
+        <!-- <li><a href="{% url 'admin_page' %}"><i class="fa-solid fa-lock"></i> Admin</a></li>
+        <li><a href="{% url 'admin_page' %}"><i class="fa-solid fa-bell"></i></a></li> -->
+
+        {% if user.is_staff %}
+        <form method="post" action="{% url 'admin_page' %}">
+          {% csrf_token %}
+          <button type="submit"><i class="fa-solid fa-lock"></i> Admin</button>
+        </form>
+        {% endif %}
 
         {% if user.is_authenticated %}
         <form method="post" action="{% url 'log_out' %}">

@@ -9,5 +9,5 @@ urlpatterns = [
     path('projects/', views.home, {'name': 'projects'}, name="projects"),
     path('tasks/', views.home, {'name': 'tasks'}, name="tasks"),
     path('profile/', views.home, {'name': 'profile'}, name="profile"),
-    path('admin/', views.home, {'name': 'admin'}, name="admin"),
+    path('admin_page/', views.home, {'name': 'admin_page'}, name="admin_page"),
 ]
