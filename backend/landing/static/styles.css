@@ -1379,6 +1379,7 @@ footer {
 }
 
 .contact-form input[type="text"],
+.contact-form input[type="password"],
 .contact-form input[type="email"],
 .contact-form input[type="tel"],
 .contact-form input[type="subject"], /* Added subject input type for clarity */
@@ -1394,6 +1395,7 @@ footer {
 }
 
 .contact-form input[type="text"]:focus,
+.contact-form input[type="password"]:focus,
 .contact-form input[type="email"]:focus,
 .contact-form input[type="tel"]:focus,
 .contact-form input[type="subject"]:focus,

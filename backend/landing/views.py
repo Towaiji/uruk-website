@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 def home(req, name="home"):  # Default to "home" for the root
@@ -23,6 +23,5 @@ def login_user(req):
 
 def log_out(req):
     logout(req)
-    print("MY LOGOUT VIEW CALLED")
     messages.error(req, "You were successfully logged out!")
     return redirect('login_user')
