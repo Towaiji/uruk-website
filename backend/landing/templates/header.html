@@ -6,7 +6,7 @@
     </div>
     <nav class="nav-bar">
       <ul class="menu">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and request.resolver_match.url_name != "login_user" %}
         {% csrf_token %}
         <li><a href="{% url 'home' %}">Dashboard</a></li>
         <li><a href="{% url 'calendar' %}">Calendar</a></li>
@@ -15,12 +15,12 @@
         <li><a href="{% url 'profile' %}">Profile</a></li>
         {% endif %}
 
-        {% if user.is_staff %}
+        {% if user.is_staff and request.resolver_match.url_name != "login_user" %}
         {% csrf_token %}
         <li><a href="{% url 'admin_page' %}"><i class="fa-solid fa-lock"></i> Admin</a></li>
         {% endif %}
 
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and request.resolver_match.url_name != "login_user" %}
         {% csrf_token %}
         <li><a href="{% url 'log_out' %}">Logout</a></li>
         {% endif %}

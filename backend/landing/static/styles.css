@@ -1363,7 +1363,7 @@ footer {
 .contact-form-container h3 {
     font-size: 2rem;
     color: var(--primary-color);
-    margin-bottom: 25px;
+    margin-bottom: 75px;
 }
 
 .contact-form .form-group {
@@ -1811,5 +1811,21 @@ footer {
   .project-card {
     padding: 20px 10px;
   }
+}
+
+
+/* make footer stick to the bottom */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main, .section {
+    flex: 1;
 }
 
