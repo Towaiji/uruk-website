@@ -1,14 +1,15 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin | Uruk GC</title>
-  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}"/>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" />
   <link rel="stylesheet" href="{% static 'styles.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
   <style>
     .admin-container {
       display: flex;
@@ -87,7 +88,10 @@
       margin-bottom: 5px;
     }
   </style>
+
+
 </head>
+
 <body>
   {% include "header.html" %}
 
@@ -101,38 +105,32 @@
         <h3><i class="fa-solid fa-users-gear"></i> Search & Select Employee</h3>
 
         <div class="filter-group">
-          <input type="text" id="filter-name" placeholder="Search by name..." />
+          <input type="text" id="filter-name" placeholder="Search" />
           <select id="filter-role">
-            <option value="">All Roles</option>
-            <option value="engineer">Engineer</option>
-            <option value="manager">Manager</option>
-            <option value="foreman">Foreman</option>
-          </select>
-          <select id="filter-project">
-            <option value="">All Projects</option>
-            <option value="Alpha">Alpha</option>
-            <option value="Beta">Beta</option>
-            <option value="Gamma">Gamma</option>
+            <option value="">Filter By:</option>
+            <option value="engineer">Name</option>
+            <option value="manager">Project</option>
           </select>
         </div>
 
         <div class="results" id="employee-results">
           <!-- Placeholder employees (these would be dynamic from backend) -->
-          <p><strong>User A</strong> – Engineer – Project Alpha</p>
-          <p><strong>User B</strong> – Manager – Project Beta</p>
         </div>
       </section>
 
       <!-- RIGHT: Assign Tasks & Send Report -->
       <section class="admin-panel">
+
         <h3><i class="fa-solid fa-tasks"></i> Assign Task</h3>
-        <label for="task-desc">Task Description</label>
-        <textarea id="task-desc" rows="3" placeholder="e.g. Inspect electrical wiring..."></textarea>
 
-        <label for="due-date">Due Date</label>
-        <input type="date" id="due-date" />
 
-        <button class="btn" onclick="assignTask()">Assign Task</button>
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          {{ task_form.as_p }}
+
+          <button class="btn" name="assign_task" onclick="assignTask()" type="submit">Assign Task</button>
+        </form>
 
         <hr style="margin: 30px 0;" />
 
@@ -142,6 +140,24 @@
 
         <button class="btn" onclick="sendReport()">Send Report</button>
       </section>
+
+      <!-- BOTTOM: Add New Project -->
+      <section class="admin-panel" style="width: 100%;">
+        <h3><i class="fa-solid fa-building"></i> Add New Project</h3>
+
+
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          {{ project_form.as_p }}
+
+          <button class="btn" name="add_project" onclick="addProject()" type="submit">Add Project</button>
+        </form>
+
+
+
+      </section>
+
     </div>
   </main>
 
@@ -155,6 +171,62 @@
     function sendReport() {
       alert("Report sent to selected employee.");
     }
+
+    function addProject() {
+      alert("Project added!");
+    }
+
+    // 1. Build users and projects JS arrays using Django context
+    const users = [{% for u in users %}"{{ u.username|escapejs }}"{% if not forloop.last %}, {% endif %} {% endfor %}];
+    const projects = [{% for p in projects %}"{{ p.project_name|escapejs }}"{% if not forloop.last %}, {% endif %} {% endfor %}];
+
+    // 2. Helper function to render results
+    function renderResults(list) {
+      const box = document.getElementById('employee-results');
+      box.innerHTML = "";
+
+      if (!list.length) {
+        box.innerHTML = "<p>No results found.</p>";
+      } else {
+        list.forEach((item, i) => {
+          box.innerHTML += `
+    <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-weight: bold;">
+      <input type="radio" name="result-radio" value="${item}" id="radio-${i}">
+      <span>${item}</span>
+    </label>
+  `;
+        });
+
+      }
+    }
+
+
+    // 3. Listen for filter changes
+    const filterRole = document.getElementById('filter-role');
+    const filterName = document.getElementById('filter-name');
+    filterRole.addEventListener('change', updateResults);
+    filterName.addEventListener('input', updateResults);
+
+    function updateResults() {
+      const roleValue = filterRole.value;
+      const query = filterName.value.toLowerCase();
+      let results = [];
+      if (roleValue === "manager") { // Project
+        results = projects.filter(p => p.toLowerCase().includes(query));
+      } else if (roleValue === "engineer") { // Name
+        results = users.filter(u => u.toLowerCase().includes(query));
+      }
+      renderResults(results);
+    }
+
+    // Optionally: show all users/projects at start
+    // renderResults([]);
+
+    // For debug:
+    console.log('users:', users);
+    console.log('projects:', projects);
+
   </script>
 </body>
+
 </html>

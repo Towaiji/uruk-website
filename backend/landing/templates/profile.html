@@ -16,26 +16,22 @@
 
   <main class="section">
     <div class="container">
-      <h2><i class="fa-solid fa-user"></i> Profile & Settings</h2>
+      <h2><i class="fa-solid fa-user"></i> Your Profile</h2>
       
       <div class="profile-card">
-        <div class="avatar">
-          <img src="avatar-placeholder.png" alt="User Avatar">
-          <button class="upload-btn">Change Photo</button>
-        </div>
 
         <div class="profile-form">
           <label>Full Name</label>
-          <input type="text" value="Ali Al-Mansoori">
+          <input type="text" value="{{ user.first_name }} {{ user.last_name }}" readonly>
 
           <label>Email</label>
-          <input type="email" value="ali@uruk.com" readonly>
+          <input type="email" value="{{ user.email }}" readonly>
 
           <label>Phone</label>
-          <input type="tel" value="+971 50 123 4567">
+          <input type="tel" value={{profile.phone}} readonly>
 
           <label>Role</label>
-          <input type="text" value="Project Engineer" readonly>
+          <input type="text" value={{profile.role}} readonly>
 
           <label>Preferred Theme</label>
           <select>

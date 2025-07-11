@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Projects | Uruk GC</title>
-  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}"/>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" />
   <link rel="stylesheet" href="{% static 'styles.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,15 +27,32 @@
       flex: 1;
     }
 
-    .two-column {
+    .project-carousel {
       display: flex;
-      flex-wrap: wrap;
       gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 20px 0;
     }
 
-    .two-column>section {
-      flex: 1;
+    .project-card {
+      flex: 0 0 calc(33.333% - 20px); /* Show 3 cards at a time */
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 15px;
       min-width: 300px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -44,46 +62,35 @@
 
   <div class="container">
     <section id="projects" class="section">
-      <h3><i class="fa-solid fa-diagram-project"></i> Projects</h3>
-      <div class="project-gallery-grid">
-        <!-- Example Project Card 1 -->
-        <div class="project-card">
-          <img src="{% static 'images/project1.jpg' %}"alt="Project Alpha">
-          <div class="project-info">
-            <h4>Project Alpha</h4>
-            <p class="project-category">Commercial Construction</p>
-            <p class="project-description">A 15-story modern office building, designed for LEED certification with
-              integrated smart systems.</p>
-            <ul class="project-meta">
-              <li><strong>Location:</strong> Financial District</li>
-              <li><strong>Completion:</strong> March 2024</li>
-              <li><strong>Services:</strong> Construction, Project Management</li>
-            </ul>
-            <a href="#" class="btn-project-details">View Project</a>
-          </div>
-        </div>
-        <!-- Example Project Card 2 -->
-        <div class="project-card">
-          <img src="{% static 'images/project2.jpg' %}" alt="Project Beta">
-          <div class="project-info">
-            <h4>Project Beta</h4>
-            <p class="project-category">Renovation</p>
-            <p class="project-description">Full renovation including MEP and interior fit-out, completed ahead of
-              schedule.</p>
-            <ul class="project-meta">
-              <li><strong>Location:</strong> Central Abu Dhabi</li>
-              <li><strong>Completion:</strong> April 2024</li>
-              <li><strong>Services:</strong> Renovation, Interior Fit-Out</li>
-            </ul>
-            <a href="#" class="btn-project-details">View Project</a>
-          </div>
-        </div>
-      </div>
-    </section>
 
+      <h3><i class="fa-solid fa-diagram-project"></i> Projects</h3>
+
+      <div class="project-carousel">
+        {% for project in profile.projects.all %}
+          <div class="project-card">
+            {% if project.image %}
+              <img src="{{ project.image.url }}" alt="">
+            {% endif %}
+            <div class="project-info">
+              <h4>{{ project.project_name }}</h4>
+              <p class="project-category">{{ project.type }}</p>
+              <p class="project-description">{{ project.description }}</p>
+              <ul class="project-meta">
+                <li><strong>Location:</strong> {{ project.location }}</li>
+                <li><strong>Completion:</strong> {{ project.completion_date }}</li>
+                <li><strong>Services:</strong> {{ project.services }}</li>
+              </ul>
+              <a href="#" class="btn-project-details">View Project</a>
+            </div>
+          </div>
+        {% empty %}
+          <h1>No projects found</h1>
+        {% endfor %}
+      </div>
+
+    </section>
   </div>
 
   {% include "footer.html" %}
 </body>
-
 </html>

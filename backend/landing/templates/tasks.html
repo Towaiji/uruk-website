@@ -1,74 +1,76 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> My Tasks | Uruk GC</title>
-  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}"/>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" />
   <link rel="stylesheet" href="{% static 'styles.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="{% static 'script.js' %}"></script>
   <style>
     .carousel-wrapper {
-  position: relative;
-  overflow: hidden;
-}
+      position: relative;
+      overflow: hidden;
+    }
 
-.project-carousel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 20px 0;
-}
+    .project-carousel {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 20px 0;
+    }
 
-.project-card {
-  flex: 0 0 calc(33.333% - 20px); /* Show 3 cards at a time */
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  padding: 15px;
-  min-width: 300px;
-  max-width: 300px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
+    .project-card {
+      flex: 0 0 calc(33.333% - 20px);
+      /* Show 3 cards at a time */
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      min-width: 300px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
 
-.project-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
+    .project-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
 
-.scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 10px;
-  z-index: 1;
-  cursor: pointer;
-  font-size: 1.2rem;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      z-index: 1;
+      cursor: pointer;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
 
-.scroll-btn.left {
-  left: -10px;
-}
+    .scroll-btn.left {
+      left: -10px;
+    }
 
-.scroll-btn.right {
-  right: -10px;
-}
-
+    .scroll-btn.right {
+      right: -10px;
+    }
   </style>
 </head>
+
 <body>
   {% include "header.html" %}
 
@@ -77,76 +79,35 @@
       <h2><i class="fa-solid fa-list-check"></i> Tasks</h2>
 
       <div class="carousel-wrapper">
-        <button class="scroll-btn left"><i class="fa-solid fa-chevron-left"></i></button>
-
         <div class="project-carousel">
-          <div class="project-card">
-            <img src="{% static 'images/project1.jpg' %}" alt="Project Alpha">
-            <p></p><h4>Project Alpha</h4></p>
-            <strong>Location: Abu Dhabi Central</strong>
-            <strong>Role: Engineer</strong> 
-            <p><strong>Status:</strong> In Progress</p>
-            <ul class="checklist">
-            <li style="list-style: none;"><input type="checkbox" > Inspect HVAC System</li>
-            <li style="list-style: none;"><input type="checkbox" > Submit progress report</li>
-            <li style="list-style: none;"><input type="checkbox" > Review structural plans</li>
-            <li style="list-style: none;"><input type="checkbox" > Update project documentation</li>
-            <li style="list-style: none;"><input type="checkbox" > Attend site safety briefing</li>
-          </ul>
-          </div>
 
+          {% for task in profile.tasks.all %}
           <div class="project-card">
-            <img src="{% static 'images/project2.jpg' %}" alt="Project Beta">
-            <p></p><h4>Project Beta</h4></p>
-            <strong>Location: Al Ain</strong>
-            <strong>Role: Engineer</strong> 
-            <p><strong>Status:</strong> Completed</p>
+            {% if task.project and task.project.image %}
+            <img src="{{ task.project.image.url }}">
+            {% endif %}
+            <h4>{{ task.title }}</h4>
+            {% if task.project %}
+            <strong>{{ task.project.location }}</strong>
+            {% endif %}
+            <strong>Role: {{ profile.role }}</strong>
+            <p><strong>Due Date:</strong> {{ task.due_date }}</p>
             <ul class="checklist">
-            <li style="list-style: none;"><input type="checkbox" > Inspect HVAC System</li>
-            <li style="list-style: none;"><input type="checkbox" > Submit progress report</li>
-            <li style="list-style: none;"><input type="checkbox" > Review structural plans</li>
-            <li style="list-style: none;"><input type="checkbox" > Update project documentation</li>
-            <li style="list-style: none;"><input type="checkbox" > Attend site safety briefing</li>
-          </ul>
+              <li style="list-style: none;"><input type="checkbox"> {{ task.desc }}</li>
+            </ul>
           </div>
+          {% empty %}
+          <h1>No tasks available!</h1>
+          {% endfor %}
 
-          <div class="project-card">
-            <img src="{% static 'images/project3.jpg' %}" alt="Project Gamma">
-            <p></p><h4>Project Gamma</h4></p>
-            <strong>Location: Dubai Marina</strong>
-            <strong>Role: Engineer</strong> 
-            <p><strong>Status:</strong> Starting Soon</p>
-            <ul class="checklist">
-            <li style="list-style: none;"><input type="checkbox" > Inspect HVAC System</li>
-            <li style="list-style: none;"><input type="checkbox" > Submit progress report</li>
-            <li style="list-style: none;"><input type="checkbox" > Review structural plans</li>
-            <li style="list-style: none;"><input type="checkbox" > Update project documentation</li>
-            <li style="list-style: none;"><input type="checkbox" > Attend site safety briefing</li>
-          </ul>
-          </div>
-
-          <div class="project-card">
-            <img src="{% static 'images/bg2.jpg' %}" alt="Project Delta">
-            <p></p><h4>Project Delta</h4></p>
-            <strong>Location: Al Ain</strong>
-            <strong>Role: Engineer</strong> 
-            <p><strong>Status:</strong> Completed</p>
-            <ul class="checklist">
-            <li style="list-style: none;"><input type="checkbox" > Inspect HVAC System</li>
-            <li style="list-style: none;"><input type="checkbox" > Submit progress report</li>
-            <li style="list-style: none;"><input type="checkbox" > Review structural plans</li>
-            <li style="list-style: none;"><input type="checkbox" > Update project documentation</li>
-            <li style="list-style: none;"><input type="checkbox" > Attend site safety briefing</li>
-          </ul>
-          </div>
         </div>
-
-        <button class="scroll-btn right"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
+
     </div>
   </main>
 
   {% include "footer.html" %}
 
 </body>
+
 </html>

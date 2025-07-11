@@ -1,0 +1,10 @@
+SUPA_API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvY3RicnRzYWxibnJweWJuZ2N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5ODYyODUsImV4cCI6MjA2NjU2MjI4NX0.nsBuFrC7YjPsoq7kFE5Zbf-jCCfF06SI15DsQR_Xxac
+SUPA_PROJECT_URL=https://toctbrtsalbnrpybngcv.supabase.co
+SUPA_DIRECT_URL=postgresql://postgres.toctbrtsalbnrpybngcv:atp!rhn!mzj4nye4YGV@aws-0-us-east-2.pooler.supabase.com:5432/postgres
+SUPA_HOST=aws-0-us-east-2.pooler.supabase.com
+SUPA_PASSWORD=atp!rhn!mzj4nye4YGV
+SUPA_PROJECT_NAME=postgres
+SUPA_USER=postgres.toctbrtsalbnrpybngcv
+SUPA_PROJECT_ID=toctbrtsalbnrpybngcv
+DJANGO_SECRET_KEY =django-insecure-$*2q@fd9p-=8wf)ni1%5a5hsce9*^b1k61i9p*j!q5%07np%(p
+SUPA_PORT=5432
