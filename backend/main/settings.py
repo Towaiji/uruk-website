@@ -81,8 +81,15 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('SUPA_PROJECT_NAME'),    # Database name
+        'USER': os.getenv('SUPA_USER'),            # Database user
+        'PASSWORD': os.getenv('SUPA_PASSWORD'),    # Database password
+        'HOST': os.getenv('SUPA_HOST'),            # Database host (e.g. aws-0-us-east-2.pooler.supabase.com)
+        'PORT': os.getenv('SUPA_PORT', '5432'),    # Port (default 5432)
+        'OPTIONS': {
+            'sslmode': 'require',
+        }
     }
 }
 
