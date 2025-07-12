@@ -21,7 +21,8 @@
     .admin-panel {
       flex: 1;
       min-width: 350px;
-      background-color: white;
+      background-color: #800000;
+      color:white;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -87,6 +88,16 @@
     .results p {
       margin-bottom: 5px;
     }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #ff5e5e;
+      /* or your brand color */
+      border-radius: 5px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
   </style>
 
 
@@ -102,16 +113,24 @@
 
       <!-- LEFT: Filter and Select Employee -->
       <section class="admin-panel">
-        <h3><i class="fa-solid fa-users-gear"></i> Search & Select Employee</h3>
+        <h3 style="color: #feb47b;"><i class="fa-solid fa-users-gear"></i> Search & Select Employee</h3>
 
         <div class="filter-group">
           <input type="text" id="filter-name" placeholder="Search" />
           <select id="filter-role">
             <option value="">Filter By:</option>
-            <option value="engineer">Name</option>
-            <option value="manager">Project</option>
+            <option value="filter_name">Name</option>
+            <option value="filter_project">Project</option>
+            <option value="filter_role">Role</option>
           </select>
         </div>
+
+        <div class="second_filter">
+          <select id="second_filter">
+            <!-- Will be filled by JS -->
+          </select>
+        </div>
+
 
         <div class="results" id="employee-results">
           <!-- Placeholder employees (these would be dynamic from backend) -->
@@ -121,7 +140,7 @@
       <!-- RIGHT: Assign Tasks & Send Report -->
       <section class="admin-panel">
 
-        <h3><i class="fa-solid fa-tasks"></i> Assign Task</h3>
+        <h3 style="color: #feb47b;"><i class="fa-solid fa-tasks"></i> Assign Task</h3>
 
 
         <form action="" method="POST" enctype="multipart/form-data">
@@ -134,16 +153,11 @@
 
         <hr style="margin: 30px 0;" />
 
-        <h3><i class="fa-solid fa-paper-plane"></i> Send Report</h3>
-        <label for="report-message">Message</label>
-        <textarea id="report-message" rows="3" placeholder="e.g. Here's the weekly summary..."></textarea>
-
-        <button class="btn" onclick="sendReport()">Send Report</button>
       </section>
 
       <!-- BOTTOM: Add New Project -->
       <section class="admin-panel" style="width: 100%;">
-        <h3><i class="fa-solid fa-building"></i> Add New Project</h3>
+        <h3 style="color: #feb47b;"><i class="fa-solid fa-building"></i> Add New Project</h3>
 
 
         <form action="" method="POST" enctype="multipart/form-data">
@@ -176,55 +190,150 @@
       alert("Project added!");
     }
 
-    // 1. Build users and projects JS arrays using Django context
-    const users = [{% for u in users %}"{{ u.username|escapejs }}"{% if not forloop.last %}, {% endif %} {% endfor %}];
-    const projects = [{% for p in projects %}"{{ p.project_name|escapejs }}"{% if not forloop.last %}, {% endif %} {% endfor %}];
+    // Step 1: Create objects for users
+    // We'll want to know username, role, and projects for each user!
+    const users = [
+      {% for u in users %}
+    {
+      username: "{{ u.username|escapejs }}",
+        role: "{{ u.userprofile.role|default_if_none:''|escapejs }}",
+          projects: [{% for p in u.userprofile.projects.all %} "{{ p.project_name|escapejs }}"{% if not forloop.last %}, {% endif %} {% endfor %}]
+    }{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+];
 
-    // 2. Helper function to render results
-    function renderResults(list) {
-      const box = document.getElementById('employee-results');
-      box.innerHTML = "";
+    // For quick access:
+    const roles = [...new Set(users.map(u => u.role).filter(r => r))];  // Unique non-empty roles
+    const projects = [...new Set(users.flatMap(u => u.projects))];      // Unique project names
+    const names = users.map(u => u.username);
 
-      if (!list.length) {
-        box.innerHTML = "<p>No results found.</p>";
-      } else {
-        list.forEach((item, i) => {
-          box.innerHTML += `
-    <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-weight: bold;">
-      <input type="radio" name="result-radio" value="${item}" id="radio-${i}">
-      <span>${item}</span>
-    </label>
-  `;
-        });
+    // --- UI Elements
+    const filterType = document.getElementById('filter-role');      // Dropdown for filter type
+    const secondFilter = document.getElementById('second_filter');  // Dropdown for the options
+    const employeeResults = document.getElementById('employee-results');
 
-      }
+    // Step 2: Fill the second dropdown based on first filter
+    function update_second_filter() {
+      // Figure out what the user is filtering by
+      const type = filterType.value;
+
+      let list = [];
+      if (type === 'filter_role') list = roles;
+      else if (type === 'filter_project') list = projects;
+      else list = [];
+
+      // Clear out
+      secondFilter.innerHTML = '';
+      // Add a default option
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = '';
+      defaultOpt.textContent = '-- Select --';
+      secondFilter.appendChild(defaultOpt);
+
+      // Add new options
+      list.forEach(function (item) {
+        const option = document.createElement('option');
+        option.value = item;
+        option.textContent = item;
+        secondFilter.appendChild(option);
+      });
     }
 
+    // Step 3: Render results based on filter
+    function renderResults() {
+      // What are we filtering by, and what value did the user choose?
+      const type = filterType.value;
+      const val = secondFilter.value;
 
-    // 3. Listen for filter changes
-    const filterRole = document.getElementById('filter-role');
-    const filterName = document.getElementById('filter-name');
-    filterRole.addEventListener('change', updateResults);
-    filterName.addEventListener('input', updateResults);
-
-    function updateResults() {
-      const roleValue = filterRole.value;
-      const query = filterName.value.toLowerCase();
-      let results = [];
-      if (roleValue === "manager") { // Project
-        results = projects.filter(p => p.toLowerCase().includes(query));
-      } else if (roleValue === "engineer") { // Name
-        results = users.filter(u => u.toLowerCase().includes(query));
+      let filtered = users;
+      if (type === 'filter_role' && val) {
+        filtered = users.filter(u => u.role === val);
+      } else if (type === 'filter_project' && val) {
+        filtered = users.filter(u => u.projects.includes(val));
+      } else if (type === 'filter_name' && val) {
+        filtered = users.filter(u => u.username === val);
       }
-      renderResults(results);
+
+      // Show the checkboxes for these users
+      employeeResults.innerHTML = '';
+      if (!filtered.length) {
+        employeeResults.innerHTML = '<p>No results found.</p>';
+        return;
+      }
+      filtered.forEach(function (user, i) {
+        employeeResults.innerHTML += `
+      <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-weight: bold;">
+        <input type="checkbox" class="result-checkbox" value="${user.username}" id="checkbox-${i}">
+        <span>${user.username}</span>
+      </label>
+    `;
+      });
     }
 
-    // Optionally: show all users/projects at start
-    // renderResults([]);
+    // Step 4: Wire up the events
+    filterType.addEventListener('change', () => {
+      update_second_filter();
+      renderResults();
+    });
+    secondFilter.addEventListener('change', renderResults);
 
-    // For debug:
-    console.log('users:', users);
-    console.log('projects:', projects);
+    // Step 5: Initial fill
+    update_second_filter();
+
+    // Step 6: Sync checkboxes to <select multiple> in form
+    employeeResults.addEventListener('change', function (e) {
+      if (e.target.classList.contains('result-checkbox')) {
+        const username = e.target.value;
+        const isChecked = e.target.checked;
+
+        const select = document.getElementById('id_assigned_users');
+        if (select) {
+          // Loop through all <option>s and match by value
+          for (let i = 0; i < select.options.length; i++) {
+            const option = select.options[i];
+            if (option.value === username) {
+              option.selected = isChecked;
+            }
+          }
+        }
+      }
+    });
+
+    const filterNameInput = document.getElementById('filter-name');
+
+    filterNameInput.addEventListener('input', function () {
+      const searchTerm = filterNameInput.value.trim().toLowerCase();
+      // Go through all checkboxes in employeeResults and hide those not matching
+      const labels = employeeResults.querySelectorAll('label');
+      labels.forEach(label => {
+        const username = label.querySelector('span').textContent.toLowerCase();
+        if (username.includes(searchTerm)) {
+          label.style.display = 'flex';
+        } else {
+          label.style.display = 'none';
+        }
+      });
+    });
+
+    document.getElementById('employee-results').addEventListener('change', function (e) {
+      if (e.target.classList.contains('result-checkbox')) {
+        const username = e.target.value;
+        const isChecked = e.target.checked;
+
+        const select = document.getElementById('id_assigned_users');
+        if (select) {
+          // Loop through all <option>s and match by text or value
+          for (let i = 0; i < select.options.length; i++) {
+            const option = select.options[i];
+            // Match either by text or value as needed:
+            if (option.text === username || option.value === username) {
+              option.selected = isChecked;
+            }
+          }
+        }
+      }
+    });
+
 
   </script>
 </body>

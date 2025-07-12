@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from multiselectfield import MultiSelectField
+
+NOTIFY_CHOICES = (
+    ('whatsapp', 'WhatsApp'),
+    ('email', 'Email'),
+)
 
 class Project(models.Model):
     project_name = models.CharField(max_length=255)
@@ -8,6 +14,7 @@ class Project(models.Model):
     location = models.CharField(max_length=255)
     completion_date = models.DateField()
     services = models.TextField()
+    assigned_users = models.ManyToManyField(User, related_name='project_users', blank=True)
     image = models.ImageField(upload_to='project_images/', blank=True, null=True)
 
     def __str__(self):
@@ -20,6 +27,7 @@ class Task(models.Model):
     due_date = models.DateField()
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
     assigned_users = models.ManyToManyField(User, related_name='users', blank=True) 
+    notify = MultiSelectField(choices=NOTIFY_CHOICES, blank=True)
 
     def __str__(self):
         return self.title

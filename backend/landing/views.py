@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .supabase_client import get_supabase_client
-from django.http import HttpResponseRedirect
 from .forms import ProjectForm, TaskForm, UserForm
 from .models import Project, UserProfile, Task
+from .notify import send_email, send_message
+from datetime import date
 
 def home(req, name="home"):  # Default to "home" for the root
 
@@ -44,7 +44,7 @@ def get_projects(req):
     
     return render(req, "projects.html", {})
 
-def get_tasks(req):
+def update_tasks(req):
     if req.method == "GET":
         tasks = Task.objects.all()
         profile = UserProfile.objects.get(user__username=req.user.username)
@@ -111,10 +111,49 @@ def admin_page(request):
                         try:
                             profile = UserProfile.objects.get(user=user)
                             profile.tasks.add(task)
+                            if "whatsapp" in task.notify:
+                                wa_message = (
+                                                f"🟢 *Uruk GC Task Assigned*\n\n"
+                                                f"*Project:* {task.project.project_name if task.project else 'N/A'}\n"
+                                                f"*Task:* {task.title}\n"
+                                                f"*Due Date:* {task.due_date.strftime('%B %d, %Y')}\n\n"
+                                                f"*Description:*\n{task.desc}\n\n"
+                                                f"Please check your dashboard for more details."
+                                            )
+
+                                send_message(profile.phone, wa_message)
+                            if "email" in task.notify:
+                                email_html = f"""
+                                                <html>
+                                                <body style="font-family: 'Open Sans', Arial, sans-serif; background: #fafbfc; color: #222; padding: 0; margin: 0;">
+                                                    <div style="max-width: 500px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 20px #0001; padding: 36px 32px;">
+                                                    <div style="text-align: center; margin-bottom: 24px;">
+                                                        <h1> Uruk GC  </h2>
+                                                    </div>
+                                                    <h2 style="color: #800000; margin-top: 0; margin-bottom: 12px;">New Task Assigned</h2>
+                                                    <div style="margin-bottom: 22px;">
+                                                        <strong style="color:#222;">Hello {user.first_name}, please complete the following task assigned to you:<br><br>
+                                                        <strong style="color:#222;">Project:</strong> {task.project.project_name if task.project else 'N/A'}<br>
+                                                        <strong style="color:#222;">Task:</strong> {task.title}<br>
+                                                        <strong style="color:#222;">Due Date:</strong> {task.due_date.strftime('%B %d, %Y')}
+                                                    </div>
+                                                    <div style="margin-bottom: 22px;">
+                                                        <strong style="color:#222;">Description:</strong><br>
+                                                        <span style="color:#555;">{task.desc}</span>
+                                                    </div>
+                                                    <div style="margin-top: 32px; color: #888; font-size: 13px; text-align: center;">
+                                                        © {date.today().year} Uruk GC
+                                                    </div>
+                                                    </div>
+                                                </body>
+                                                </html>
+                                                """
+
+                                send_email("umairarhambd@gmail.com", [user.email], email_html)
                         except UserProfile.DoesNotExist:
                             messages.error(request, f"Profile for {user.username} not found!")
                     messages.success(request, "Task assigned.")
-
+                
                 return redirect('admin_page')
             
             else:
@@ -131,7 +170,9 @@ def admin_page(request):
     return render(request, "admin_page.html", context)
 
 
+# def update_tasks(req):  # Default to "home" for the root
 
+#     return render(req, f"tasks.html", {})
 
 
 

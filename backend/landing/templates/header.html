@@ -5,6 +5,9 @@
       <img src="{% static 'images/logo.png' %}" />
     </div>
     <nav class="nav-bar">
+      <button class="menu-toggle" aria-label="Open Menu" style="display:none;">
+        <i class="fa fa-bars"></i>
+      </button>
       <ul class="menu">
         {% if user.is_authenticated and request.resolver_match.url_name != "login_user" %}
         {% csrf_token %}
@@ -24,8 +27,76 @@
         {% csrf_token %}
         <li><a href="{% url 'log_out' %}">Logout</a></li>
         {% endif %}
-
+        <div id="google_translate_element"></div>
       </ul>
+
+      <style>
+        @media (max-width: 650px) {
+          .menu-toggle {
+            display: block !important;
+            background: none;
+            border: none;
+            font-size: 1.7rem;
+            position: absolute;
+            top: 14px;
+            right: 12px;
+            z-index: 110;
+          }
+
+          .menu {
+            display: none;
+            position: absolute;
+            right: 6px;
+            top: 54px;
+            background: white;
+            box-shadow: 0 4px 16px #0002;
+            border-radius: 8px;
+            width: 165px;
+            padding: 10px 0;
+            margin: 0;
+            flex-direction: column;
+            gap: 0;
+          }
+
+          .menu.open {
+            display: flex !important;
+          }
+        }
+      </style>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const toggle = document.querySelector(".menu-toggle");
+          const menu = document.querySelector(".menu");
+          if (!toggle) return;
+          toggle.addEventListener("click", function (e) {
+            e.stopPropagation();
+            menu.classList.toggle("open");
+          });
+          document.addEventListener("click", function (e) {
+            if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+              menu.classList.remove("open");
+            }
+          });
+        });
+      </script>
+
+
+
+      <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement(
+            {
+              pageLanguage: 'en',
+              includedLanguages: 'ar', // add/remove language codes as needed
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            },
+            'google_translate_element'
+          );
+        }
+      </script>
+      <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </nav>
   </div>
 </header>
