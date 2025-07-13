@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile | Uruk GC</title>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}"/>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+  {% include "header.html" %}
+
+  <main class="section">
+    <div class="container">
+      <h2><i class="fa-solid fa-user"></i> Your Profile</h2>
+      
+      <div class="profile-card">
+
+        <div class="profile-form">
+          <label>Full Name</label>
+          <input type="text" value="{{ user.first_name }} {{ user.last_name }}" readonly>
+
+          <label>Email</label>
+          <input type="email" value="{{ user.email }}" readonly>
+
+          <label>Phone</label>
+          <input type="tel" value={{profile.phone}} readonly>
+
+          <label>Role</label>
+          <input type="text" value={{profile.role}} readonly>
+
+          <label>Preferred Theme</label>
+          <select>
+            <option>Light</option>
+            <option>Dark</option>
+          </select>
+
+          <label>Notifications</label>
+          <input type="checkbox" checked> Enable Email Alerts
+
+          <button class="save-btn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% include "footer.html" %}
+</body>
+</html>

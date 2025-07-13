@@ -1,0 +1,341 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Uruk GC</title>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" />
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+  <style>
+    .admin-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .admin-panel {
+      flex: 1;
+      min-width: 350px;
+      background-color: #800000;
+      color:white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .admin-panel h3 {
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+
+    .admin-panel label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .admin-panel input,
+    .admin-panel select,
+    .admin-panel textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+      transform: translateY(-2px);
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-group input,
+    .filter-group select {
+      flex: 1;
+    }
+
+    .results {
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+      margin-top: 15px;
+    }
+
+    .results p {
+      margin-bottom: 5px;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #ff5e5e;
+      /* or your brand color */
+      border-radius: 5px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+  </style>
+
+
+</head>
+
+<body>
+  {% include "header.html" %}
+
+  <main class="container">
+    <h2 style="margin-top: 40px; color: var(--primary-color);">Admin Panel</h2>
+
+    <div class="admin-container">
+
+      <!-- LEFT: Filter and Select Employee -->
+      <section class="admin-panel">
+        <h3 style="color: #feb47b;"><i class="fa-solid fa-users-gear"></i> Search & Select Employee</h3>
+
+        <div class="filter-group">
+          <input type="text" id="filter-name" placeholder="Search" />
+          <select id="filter-role">
+            <option value="">Filter By:</option>
+            <option value="filter_name">Name</option>
+            <option value="filter_project">Project</option>
+            <option value="filter_role">Role</option>
+          </select>
+        </div>
+
+        <div class="second_filter">
+          <select id="second_filter">
+            <!-- Will be filled by JS -->
+          </select>
+        </div>
+
+
+        <div class="results" id="employee-results">
+          <!-- Placeholder employees (these would be dynamic from backend) -->
+        </div>
+      </section>
+
+      <!-- RIGHT: Assign Tasks & Send Report -->
+      <section class="admin-panel">
+
+        <h3 style="color: #feb47b;"><i class="fa-solid fa-tasks"></i> Assign Task</h3>
+
+
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          {{ task_form.as_p }}
+
+          <button class="btn" name="assign_task" onclick="assignTask()" type="submit">Assign Task</button>
+        </form>
+
+        <hr style="margin: 30px 0;" />
+
+      </section>
+
+      <!-- BOTTOM: Add New Project -->
+      <section class="admin-panel" style="width: 100%;">
+        <h3 style="color: #feb47b;"><i class="fa-solid fa-building"></i> Add New Project</h3>
+
+
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          {{ project_form.as_p }}
+
+          <button class="btn" name="add_project" onclick="addProject()" type="submit">Add Project</button>
+        </form>
+
+
+
+      </section>
+
+    </div>
+  </main>
+
+  {% include "footer.html" %}
+
+  <script>
+    function assignTask() {
+      alert("Task assigned to selected employee.");
+    }
+
+    function sendReport() {
+      alert("Report sent to selected employee.");
+    }
+
+    function addProject() {
+      alert("Project added!");
+    }
+
+    // Step 1: Create objects for users
+    // We'll want to know username, role, and projects for each user!
+    const users = [
+      {% for u in users %}
+    {
+      username: "{{ u.username|escapejs }}",
+        role: "{{ u.userprofile.role|default_if_none:''|escapejs }}",
+          projects: [{% for p in u.userprofile.projects.all %} "{{ p.project_name|escapejs }}"{% if not forloop.last %}, {% endif %} {% endfor %}]
+    }{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+];
+
+    // For quick access:
+    const roles = [...new Set(users.map(u => u.role).filter(r => r))];  // Unique non-empty roles
+    const projects = [...new Set(users.flatMap(u => u.projects))];      // Unique project names
+    const names = users.map(u => u.username);
+
+    // --- UI Elements
+    const filterType = document.getElementById('filter-role');      // Dropdown for filter type
+    const secondFilter = document.getElementById('second_filter');  // Dropdown for the options
+    const employeeResults = document.getElementById('employee-results');
+
+    // Step 2: Fill the second dropdown based on first filter
+    function update_second_filter() {
+      // Figure out what the user is filtering by
+      const type = filterType.value;
+
+      let list = [];
+      if (type === 'filter_role') list = roles;
+      else if (type === 'filter_project') list = projects;
+      else list = [];
+
+      // Clear out
+      secondFilter.innerHTML = '';
+      // Add a default option
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = '';
+      defaultOpt.textContent = '-- Select --';
+      secondFilter.appendChild(defaultOpt);
+
+      // Add new options
+      list.forEach(function (item) {
+        const option = document.createElement('option');
+        option.value = item;
+        option.textContent = item;
+        secondFilter.appendChild(option);
+      });
+    }
+
+    // Step 3: Render results based on filter
+    function renderResults() {
+      // What are we filtering by, and what value did the user choose?
+      const type = filterType.value;
+      const val = secondFilter.value;
+
+      let filtered = users;
+      if (type === 'filter_role' && val) {
+        filtered = users.filter(u => u.role === val);
+      } else if (type === 'filter_project' && val) {
+        filtered = users.filter(u => u.projects.includes(val));
+      } else if (type === 'filter_name' && val) {
+        filtered = users.filter(u => u.username === val);
+      }
+
+      // Show the checkboxes for these users
+      employeeResults.innerHTML = '';
+      if (!filtered.length) {
+        employeeResults.innerHTML = '<p>No results found.</p>';
+        return;
+      }
+      filtered.forEach(function (user, i) {
+        employeeResults.innerHTML += `
+      <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-weight: bold;">
+        <input type="checkbox" class="result-checkbox" value="${user.username}" id="checkbox-${i}">
+        <span>${user.username}</span>
+      </label>
+    `;
+      });
+    }
+
+    // Step 4: Wire up the events
+    filterType.addEventListener('change', () => {
+      update_second_filter();
+      renderResults();
+    });
+    secondFilter.addEventListener('change', renderResults);
+
+    // Step 5: Initial fill
+    update_second_filter();
+
+    // Step 6: Sync checkboxes to <select multiple> in form
+    employeeResults.addEventListener('change', function (e) {
+      if (e.target.classList.contains('result-checkbox')) {
+        const username = e.target.value;
+        const isChecked = e.target.checked;
+
+        const select = document.getElementById('id_assigned_users');
+        if (select) {
+          // Loop through all <option>s and match by value
+          for (let i = 0; i < select.options.length; i++) {
+            const option = select.options[i];
+            if (option.value === username) {
+              option.selected = isChecked;
+            }
+          }
+        }
+      }
+    });
+
+    const filterNameInput = document.getElementById('filter-name');
+
+    filterNameInput.addEventListener('input', function () {
+      const searchTerm = filterNameInput.value.trim().toLowerCase();
+      // Go through all checkboxes in employeeResults and hide those not matching
+      const labels = employeeResults.querySelectorAll('label');
+      labels.forEach(label => {
+        const username = label.querySelector('span').textContent.toLowerCase();
+        if (username.includes(searchTerm)) {
+          label.style.display = 'flex';
+        } else {
+          label.style.display = 'none';
+        }
+      });
+    });
+
+    document.getElementById('employee-results').addEventListener('change', function (e) {
+      if (e.target.classList.contains('result-checkbox')) {
+        const username = e.target.value;
+        const isChecked = e.target.checked;
+
+        const select = document.getElementById('id_assigned_users');
+        if (select) {
+          // Loop through all <option>s and match by text or value
+          for (let i = 0; i < select.options.length; i++) {
+            const option = select.options[i];
+            // Match either by text or value as needed:
+            if (option.text === username || option.value === username) {
+              option.selected = isChecked;
+            }
+          }
+        }
+      }
+    });
+
+
+  </script>
+</body>
+
+</html>

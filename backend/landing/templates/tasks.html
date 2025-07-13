@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> My Tasks | Uruk GC</title>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" />
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="{% static 'script.js' %}"></script>
+  <style>
+    .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-carousel {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 20px 0;
+    }
+
+    .project-card {
+      flex: 0 0 calc(33.333% - 20px);
+      /* Show 3 cards at a time */
+      background-color: #800000;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      min-width: 300px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      z-index: 1;
+      cursor: pointer;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-btn.left {
+      left: -10px;
+    }
+
+    .scroll-btn.right {
+      right: -10px;
+    }
+  </style>
+</head>
+
+<body>
+  {% include "header.html" %}
+
+  <main class="section">
+    <div class="container">
+      <h2><i class="fa-solid fa-list-check"></i> Tasks</h2>
+
+      <div class="carousel-wrapper">
+        <div class="project-carousel">
+
+          {% for task in profile.tasks.all %}
+          <div class="project-card" id="{{task.title}}">
+            {% if task.project and task.project.image %}
+            <img src="{{ task.project.image.url }}">
+            {% endif %}
+            <h4>Task: {{ task.title }}</h4>
+            <div class="meta-row">
+              {% if task.project %}
+              <br>
+              <div> <strong>Project:</strong> {{ task.project.project_name }}</div>
+              {% endif %}
+              {% if task.project %}
+              <div><strong>Location:</strong> {{ task.project.location }}</div>
+              {% endif %}
+            </div>
+            <div class="meta-row">
+              <div><strong>Role:</strong> {{ profile.role }}</div>
+              <div class="due"><i class="fa-regular fa-calendar"></i> {{ task.due_date }}</div>
+            </div>
+            <div class="desc">
+              <br>
+              <u>Description:</u> {{ task.desc }}
+            </div>
+
+            <div class="desc">
+              <br>
+              <input type="checkbox" id="status" name="status" value="Bike">
+              <label for="status"> <strong> Mark as completed </strong></label><br>
+            </div>
+          </div>
+          {% empty %}
+          <h1>No tasks available!</h1>
+          {% endfor %}
+
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  {% include "footer.html" %}
+
+</body>
+
+</html>
