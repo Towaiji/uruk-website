@@ -39,13 +39,3 @@ def send_email(from_email: str, to_emails: list, body: str, subject: str = "Uruk
     except Exception as e:
         print(e.message)
 
-# if "__name__" == "main":
-# phone_to = "+16477392107"
-# body = "Random test message"
-# from_email = "umairarhambd@gmail.com"
-# to_emails = ["umairx25.ca@gmail.com", "aliyasiraltowaiji@gmail.com"]
-
-
-# # msg = send_message(phone_to, body )
-# email = send_email(from_email, to_emails, body)
-# print(email)

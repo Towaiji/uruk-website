@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import ProjectForm, TaskForm, UserForm
+from .forms import ProjectForm, TaskForm, UserForm, CustomInviteSignupForm
 from .models import Project, UserProfile, Task
 from .notify import send_email, send_message
 from datetime import date
@@ -49,6 +49,18 @@ def update_tasks(req):
         tasks = Task.objects.all()
         profile = UserProfile.objects.get(user__username=req.user.username)
         return render(req, "tasks.html", {"tasks": tasks, "profile": profile})
+    
+    if req.method == "POST":
+        # 'completed_tasks' could be a single value or a list
+        completed_ids = req.POST.getlist('completed_tasks')
+        user_profile = UserProfile.objects.get(user=req.user)
+        for task_id in completed_ids:
+            try:
+                task = Task.objects.get(id=task_id)
+                user_profile.tasks.remove(task)  # Remove task from user profile (not delete)
+            except Task.DoesNotExist:
+                continue
+        messages.success(req, "Completed tasks removed!")
     
     return render(req, "tasks.html", {})
 
@@ -170,9 +182,17 @@ def admin_page(request):
     return render(request, "admin_page.html", context)
 
 
-# def update_tasks(req):  # Default to "home" for the root
+def signup(request): 
+    if request.method == 'POST':
+        form = CustomInviteSignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login_user')
+    else:
+        form = CustomInviteSignupForm()
+    return render(request, 'signup.html', {'signup_form': form})
 
-#     return render(req, f"tasks.html", {})
+
 
 
 

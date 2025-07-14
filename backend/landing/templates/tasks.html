@@ -79,46 +79,51 @@
     <div class="container">
       <h2><i class="fa-solid fa-list-check"></i> Tasks</h2>
 
-      <div class="carousel-wrapper">
-        <div class="project-carousel">
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="carousel-wrapper">
+          <div class="project-carousel">
 
-          {% for task in profile.tasks.all %}
-          <div class="project-card" id="{{task.title}}">
-            {% if task.project and task.project.image %}
-            <img src="{{ task.project.image.url }}">
-            {% endif %}
-            <h4>Task: {{ task.title }}</h4>
-            <div class="meta-row">
-              {% if task.project %}
-              <br>
-              <div> <strong>Project:</strong> {{ task.project.project_name }}</div>
+            {% for task in profile.tasks.all %}
+            <div class="project-card" id="{{task.title}}">
+              {% if task.project and task.project.image %}
+              <img src="{{ task.project.image.url }}">
               {% endif %}
-              {% if task.project %}
-              <div><strong>Location:</strong> {{ task.project.location }}</div>
-              {% endif %}
-            </div>
-            <div class="meta-row">
-              <div><strong>Role:</strong> {{ profile.role }}</div>
-              <div class="due"><i class="fa-regular fa-calendar"></i> {{ task.due_date }}</div>
-            </div>
-            <div class="desc">
-              <br>
-              <u>Description:</u> {{ task.desc }}
-            </div>
+              <h4>Task: {{ task.title }}</h4>
+              <div class="meta-row">
+                {% if task.project %}
+                <br>
+                <div> <strong>Project:</strong> {{ task.project.project_name }}</div>
+                {% endif %}
+                {% if task.project %}
+                <div><strong>Location:</strong> {{ task.project.location }}</div>
+                {% endif %}
+              </div>
+              <div class="meta-row">
+                <div><strong>Role:</strong> {{ profile.role }}</div>
+                <div class="due"><i class="fa-regular fa-calendar"></i> {{ task.due_date }}</div>
+              </div>
+              <div class="desc">
+                <br>
+                <u>Description:</u> {{ task.desc }}
+              </div>
 
-            <div class="desc">
-              <br>
-              <input type="checkbox" id="status" name="status" value="Bike">
-              <label for="status"> <strong> Mark as completed </strong></label><br>
+              <div class="desc">
+                <br>
+                <input type="checkbox" id="status" name="status" value="Bike">
+                <label for="status"> <strong> Mark as completed </strong></label><br>
+              </div>
             </div>
+            {% empty %}
+            <h1>No tasks available!</h1>
+            {% endfor %}
+
+
           </div>
-          {% empty %}
-          <h1>No tasks available!</h1>
-          {% endfor %}
-
-
         </div>
-      </div>
+        <button type="submit" class="btn">Update Completed Tasks</button>
+
+      </form>
 
     </div>
   </main>
