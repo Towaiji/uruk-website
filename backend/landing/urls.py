@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -11,7 +11,8 @@ urlpatterns = [
     path('projects/', views.get_projects, name="projects"),
     path('tasks/', views.update_tasks, name="tasks"),
     path('profile/', views.profile, name="profile"),
-    # path('admin_page/', views.home, {'name': 'admin_page'}, name="admin_page"),
+    path('invitations/', include('invitations.urls', namespace='invitations')),
+    path('signup/', views.signup, name='signup'),
     path('admin_page/', views.admin_page, name="admin_page"),
 ]
 

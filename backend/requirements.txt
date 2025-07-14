@@ -1,0 +1,6 @@
+Django==5.1.6
+django_multiselectfield==1.0.1
+python-dotenv==1.1.1
+sendgrid==6.12.4
+supabase==2.16.0
+twilio==9.6.5

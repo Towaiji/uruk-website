@@ -22,7 +22,7 @@
       flex: 1;
       min-width: 350px;
       background-color: #800000;
-      color:white;
+      color: white;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -190,21 +190,31 @@
       alert("Project added!");
     }
 
+    const projects = [
+      {% for p in projects %}
+    "{{ p.project_name|escapejs }}"{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+];
+
+
     // Step 1: Create objects for users
     // We'll want to know username, role, and projects for each user!
     const users = [
       {% for u in users %}
     {
-      username: "{{ u.username|escapejs }}",
-        role: "{{ u.userprofile.role|default_if_none:''|escapejs }}",
-          projects: [{% for p in u.userprofile.projects.all %} "{{ p.project_name|escapejs }}"{% if not forloop.last %}, {% endif %} {% endfor %}]
-    }{% if not forloop.last %}, {% endif %}
+      id: "{{ u.id }}",
+      full_name: "{{ u.first_name|escapejs }} {{ u.last_name|escapejs }}",
+      user: "{{ u.username|escapejs }}",  // Django username (use this as value)
+      role: "{{ u.userprofile.role|default_if_none:''|escapejs }}",
+      projects: projects,
+      curr_projects: [{% for p in u.userprofile.projects.all %} "{{ p.project_name|escapejs }}"{% if not forloop.last %}, {% endif %} {% endfor %}]
+  }{% if not forloop.last %}, {% endif %}
     {% endfor %}
 ];
 
     // For quick access:
     const roles = [...new Set(users.map(u => u.role).filter(r => r))];  // Unique non-empty roles
-    const projects = [...new Set(users.flatMap(u => u.projects))];      // Unique project names
+    // const projects = [...new Set(users.flatMap(u => projects))];      // Unique project names
     const names = users.map(u => u.username);
 
     // --- UI Elements
@@ -249,7 +259,8 @@
       if (type === 'filter_role' && val) {
         filtered = users.filter(u => u.role === val);
       } else if (type === 'filter_project' && val) {
-        filtered = users.filter(u => u.projects.includes(val));
+        filtered = users.filter(u => u.curr_projects.includes(val));
+        console.log(`For value ${val}, found users: ${filtered}`)
       } else if (type === 'filter_name' && val) {
         filtered = users.filter(u => u.username === val);
       }
@@ -263,8 +274,8 @@
       filtered.forEach(function (user, i) {
         employeeResults.innerHTML += `
       <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-weight: bold;">
-        <input type="checkbox" class="result-checkbox" value="${user.username}" id="checkbox-${i}">
-        <span>${user.username}</span>
+        <input type="checkbox" class="result-checkbox" value="${user.id}" id="checkbox-${i}">
+        <span>${user.full_name}</span>
       </label>
     `;
       });
@@ -317,16 +328,17 @@
 
     document.getElementById('employee-results').addEventListener('change', function (e) {
       if (e.target.classList.contains('result-checkbox')) {
-        const username = e.target.value;
+        const username = e.target.value; // This is now always the real Django username
+        console.log(`Username checked: ${username}`)
         const isChecked = e.target.checked;
-
         const select = document.getElementById('id_assigned_users');
         if (select) {
-          // Loop through all <option>s and match by text or value
+          console.log("Found element assigned users")
           for (let i = 0; i < select.options.length; i++) {
             const option = select.options[i];
-            // Match either by text or value as needed:
-            if (option.text === username || option.value === username) {
+            console.log(option)
+            if (option.value === username) {
+              console.log(`Found matching username and checked it: ${username}`)
               option.selected = isChecked;
             }
           }

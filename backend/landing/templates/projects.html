@@ -82,6 +82,9 @@
       <div class="carousel-wrapper">
         <div class="project-carousel">
 
+          <!-- If its an admin user, show all project -->
+          {% if user.is_staff %}
+
           {% for project in projects %}
           <div class="project-card">
             {% if project and project.image %}
@@ -100,11 +103,39 @@
               <br>
               <u>Description:</u> {{ project.description }}
             </div>
-          </div> 
+          </div>
           {% empty %}
           <h1>No projects available!</h1>
           {% endfor %}
 
+          {% endif %}
+
+          <!-- Otherwise, show only assigned projects  -->
+          {% if not user.is_staff %}
+
+          {% for project in profile.projects.all %}
+          <div class="project-card">
+            {% if project and project.image %}
+            <img src="{{ project.image.url }}">
+            {% endif %}
+            <h4>Project: {{ project.project_name }}</h4>
+            <div class="meta-row">
+              <br>
+              <div><strong>Location:</strong> {{ project.location }}</div>
+            </div>
+            <div class="meta-row">
+              <div><strong>Role:</strong> {{ profile.role }}</div>
+              <div class="due"><i class="fa-regular fa-calendar"></i> {{ project.completion_date }}</div>
+            </div>
+            <div class="desc">
+              <br>
+              <u>Description:</u> {{ project.description }}
+            </div>
+          </div>
+          {% empty %}
+          <h1>No projects available!</h1>
+          {% endfor %}
+          {% endif %}
 
 
         </div>
