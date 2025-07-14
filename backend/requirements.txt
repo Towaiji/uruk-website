@@ -4,3 +4,5 @@ python-dotenv==1.1.1
 sendgrid==6.12.4
 supabase==2.16.0
 twilio==9.6.5
+psycopg2-binary==2.9.10
+django-invitations==2.1.0
