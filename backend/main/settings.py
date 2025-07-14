@@ -32,6 +32,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'uruk-website.onrender.com',
+    '.onrender.com', 
+    'localhost', 
+    '127.0.0.1',
 ]
 
 
