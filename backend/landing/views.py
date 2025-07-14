@@ -52,13 +52,18 @@ def update_tasks(req):
     
     if req.method == "POST":
         # 'completed_tasks' could be a single value or a list
+        tasks = Task.objects.all()
         completed_ids = req.POST.getlist('completed_tasks')
+        print("Completed tasks have ids: ", completed_ids)
         user_profile = UserProfile.objects.get(user=req.user)
         for task_id in completed_ids:
             try:
                 task = Task.objects.get(id=task_id)
+                print("Completed task has name: ", task.title)
                 user_profile.tasks.remove(task)  # Remove task from user profile (not delete)
+                task.delete()
             except Task.DoesNotExist:
+                print("Error finding task, ", task_id)
                 continue
         messages.success(req, "Completed tasks removed!")
     
@@ -123,6 +128,10 @@ def admin_page(request):
                         try:
                             profile = UserProfile.objects.get(user=user)
                             profile.tasks.add(task)
+
+                            if task.project and task.project.id not in profile.projects.values_list('id', flat=True):
+                                profile.projects.add(task.project.id)
+
                             if "whatsapp" in task.notify:
                                 wa_message = (
                                                 f"🟢 *Uruk GC Task Assigned*\n\n"
